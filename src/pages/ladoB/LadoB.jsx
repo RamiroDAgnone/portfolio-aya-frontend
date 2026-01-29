@@ -45,9 +45,11 @@ export default function LadoB({ page }) {
               />
           </div>
         )}
-        <p className="ladoB-description">
-          {page.description}
-        </p>
+
+        {page.description?.split("\n").map((line, i) => (
+          <p key={i} className="ladoB-description">{line}</p>
+        ))}
+
       </header>
 
       <div className="ladoB-projects">

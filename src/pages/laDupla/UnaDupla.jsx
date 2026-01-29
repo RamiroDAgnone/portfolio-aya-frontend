@@ -21,7 +21,9 @@ export default function unaDupla({ name, role, description, image, layout, linke
             <div className="about-text">
                 <h2>{name}</h2>
                 <span>{role}</span>
-                <p>{description}</p>
+                {description?.split("\n").map((line, i) => (
+                    <p key={i}>{line}</p>
+                ))}
                 <ul className="about-list">
                     <li>
                         <a href={linkedin} target="_blank" rel="noreferrer" ><FaLinkedinIn /> Linkedin</a>

@@ -57,7 +57,9 @@ export default function LaDupla({ page }) {
           ))}
           <div className="dupla-desc">
             <h1>{page.title}</h1>
-            <p>{page.description}</p>
+            {page.description?.split("\n").map((line, i) => (
+                <p key={i}>{line}</p>
+            ))}
           </div>
         </div>
       </div>

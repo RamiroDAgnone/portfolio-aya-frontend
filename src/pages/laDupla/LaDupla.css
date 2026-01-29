@@ -67,13 +67,16 @@
     display: flex;
     flex-direction: column;
     color: #F9ECC9;
-    margin-bottom: 5rem;
     z-index: 2;
 }
 
 .dupla-desc h1 {
     font-family: "Faculty Glyphic";
     text-align: center;
+}
+
+.dupla-desc p{
+    margin: 0.2em 0
 }
 
 /* ---------- Grid Positioning ---------- */
@@ -172,6 +175,7 @@
 }
 
 .about-text p {
+    margin: 0.2em 0;
     line-height: 1.6;
     font-size: 1rem;
 }
@@ -226,7 +230,7 @@
     }
 
     .dupla-desc {
-        margin-bottom: 0;
+        margin: 0;
         text-align: justify;
     }
 
@@ -279,6 +283,7 @@
     .about-text {
         max-width: 100%;
     }
+
     .dupla-1 img { transform: rotate(0); }
     .dupla-2 img { transform: rotate(0); }
     .dupla-3 img { transform: rotate(0); }

@@ -109,7 +109,7 @@
   font-weight: 900;
   color: #F9ECC9;
   line-height: 1.6;
-  margin-bottom: 2rem;
+  margin: 0.2em 0;
 }
 
 .back-button {
@@ -118,6 +118,7 @@
   color: #fff;
   padding: 0.7rem 1.4rem;
   border-radius: 8px;
+  text-align: center;
 }
 
 .draft-badge {

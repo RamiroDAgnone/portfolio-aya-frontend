@@ -95,7 +95,9 @@ export default function UnderConstructionTemplate({ page }) {
       )}
 
       <div className="under-construction">
-        <p>{page.description}</p>
+        {page.description?.split("\n").map((line, i) => (
+          <p key={i}>{line}</p>
+        ))}
       </div>
     </div>
   );
