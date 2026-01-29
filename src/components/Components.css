@@ -1,0 +1,93 @@
+/* ---------- HEADER ---------- */
+.header{
+  background-color: #D7B88A;
+  padding: 5px 0px;
+  text-align: center;
+  width: 100%;
+  color: #F9ECC9;
+}
+
+.navbar ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  margin: 2px 0;
+
+}
+
+.navbar ul li {
+  list-style: none; 
+}
+
+.nav-left,
+.nav-right {
+    flex: 1;
+    text-align: center;
+}
+
+.nav-center {
+  flex: 0;  
+}
+
+.nav-center img {
+  margin-top: 3px;
+  width: 5rem;
+  height: auto;
+  cursor: pointer;
+}
+
+.navbar li a {
+  font-family: "Faculty Glyphic";
+  font-size: 2.5rem;
+  text-decoration: none;
+  color: #F9ECC9;
+}
+
+
+/* ---------- Footer ---------- */
+
+.footer {
+  background-color: #FEE3AC;
+  color: #14110E;
+  padding: 0.75rem 1rem;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-social,
+.footer-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer a {
+  text-decoration: none;
+  color: #14110E;
+  font-size: 0.85rem;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer span{
+    font-size: 0.75rem;
+}
+/* ---------- Responsive ---------- */
+
+@media (max-width: 600px) {
+  .footer-inner {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .navbar li a {
+    font-size: 1.5rem;
+  }
+}

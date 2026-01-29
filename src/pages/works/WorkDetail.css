@@ -1,0 +1,200 @@
+.work-detail {
+  min-height: 100vh;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.work-image {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.work-image-logo {
+  width: 30%;
+  margin-bottom: 1rem;
+}
+
+/* ---------- VIDEOS ---------- */
+
+.video-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.video-item {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.video-item iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ---------- GRAPHICS ---------- */
+
+.work-graphics {
+  width: 90%;
+  max-width: 1200px;
+}
+
+.work-graphics.grafica{
+  width: 60%;
+}
+
+.work-graphics img {
+  width: 100%;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.4);
+}
+
+/* ---------- EXTRAS ---------- */
+
+.work-extra-images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.work-extra-images img {
+  width: auto;
+  height: 260px;
+  object-fit: contain;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,.4);
+}
+
+/* ---------- DESCRIPTION ---------- */
+
+.work-content {
+  background: #73352F;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 0.5rem;
+}
+
+.work-description {
+  text-align: center;
+}
+
+.work-description h1 {
+  font-family: "Faculty Glyphic";
+  color: #FEE3AC;
+  margin-bottom: 1rem;
+}
+
+.work-description p {
+  font-family: "Monserrat";
+  font-weight: 900;
+  color: #F9ECC9;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  text-decoration: none;
+  background: #ff6600;
+  color: #fff;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+}
+
+.draft-badge {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background: red;
+  color: white;
+  font-weight: 700;
+  padding: 6px 10px;
+  z-index: 9999;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 768px) {
+
+  .work-detail {
+    padding: 0.8rem;
+  }
+
+  .work-image-logo {
+    width: 70%;
+    margin-bottom: 0.5rem;
+  }
+
+  .video-wrapper {
+    margin-bottom: 1.2rem;
+  }
+
+  .work-graphics {
+    width: 100%;
+  }
+
+  .work-graphics.grafica {
+    width: 100%;
+  }
+
+  .work-graphics img {
+    margin-bottom: 1.2rem;
+    border-radius: 8px;
+  }
+
+  .work-content {
+    padding: 1rem;
+    margin-top: 1.2rem;
+  }
+
+  /* ---------- EXTRAS ---------- */
+
+  .work-extra-images {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .work-extra-images img {
+    max-width: 90%;
+    height: auto;
+  }
+
+  /* ---------- TEXTO ---------- */
+
+  .work-description h1 {
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .work-description p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-bottom: 1.4rem;
+  }
+
+  .back-button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}

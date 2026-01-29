@@ -1,0 +1,231 @@
+.api-conteiner{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #a94442;
+  padding: 3rem 0;
+}
+
+.create-work-container, .work-api-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  width: 80%;
+  height: 100%;
+  padding: 2rem;
+  background-color: #D7B88A;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.create-work-container, .work-api-container input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ---------- SELECT ---------- */
+.work-select {
+  width: 100%;
+}
+
+.work-api-container select {
+  padding: 0.7rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+
+.work-select select{
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.work-select select:focus{
+  outline: none;
+  border-color: #73352F;
+  box-shadow: 0 0 0 2px rgba(115, 53, 47, 0.2);
+}
+
+.create-work-form, .work-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+
+.create-work-form input,
+.create-work-form textarea,
+.work-form input,
+.work-form textarea {
+  padding: 0.7rem;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+.create-work-form textarea, .work-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+.work-form label textarea{
+  width: 100%;
+}
+
+.create-work-form button, .work-form button {
+  background: #ff6600;
+  color: white;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.create-work-form button:hover, .work-form button:hover {
+  background: #cc5200;
+}
+
+.create-work-form button:disabled, .work-form button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.work-message {
+  margin-top: 1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* ---------- IMAGE ARRAY  ---------- */
+
+.image-row{
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  border: black solid 1px;
+  flex-direction: column;
+}
+
+.image-first-row{
+  display: flex;
+  align-items: center;
+  max-height: 140px;
+}
+
+.image-row input {
+  flex: 1;
+}
+
+.image-row button, .video-row button{
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.image-row button:hover, .video-row button:hover {
+  background: #c0392b;
+}
+
+.add-image-btn {
+  margin-top: 0.5rem;
+  background: #ddd;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ---------- SINGLE IMAGE  ---------- */
+
+.image-field{
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  border: black solid 1px;
+}
+
+.image-field, .image-row{
+  background-color: #F9ECC9;;
+}
+
+.single-image-preview {
+  max-width: 200px;
+  height: 160px;
+  object-fit: contain;
+}
+
+.add-image-btn:hover {
+  background: #ccc;
+}
+
+/* ---------- VIDEOS  ---------- */
+
+.video-row{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  align-items: center;
+}
+
+
+/* ---------- DND  ---------- */
+
+.drag-handle {
+  cursor: grab;
+  user-select: none;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.image-row.dragging {
+  z-index: 9999;
+  position: relative;
+}
+
+/* ---------- OTHER  ---------- */
+
+.color-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: #333;
+  padding: 5px 0;
+}
+
+.color-row input{
+  width: 100%;
+  padding: 0;
+ 
+}
+
+.color-row .color-square, .color-row .color-hex {
+  height: 1rem;
+  width: 50%;
+  border: none;
+}
+
+.color-row .color-square{
+  cursor: pointer;
+}

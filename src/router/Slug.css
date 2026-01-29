@@ -1,0 +1,10 @@
+.page-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-skeleton {
+  min-height: 100vh;
+  background-color: #73352F;
+}

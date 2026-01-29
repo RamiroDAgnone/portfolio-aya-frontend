@@ -1,0 +1,100 @@
+/* ---------- REORDER MANAGER ---------- */
+
+.reorder-manager {
+  background-color: #333;
+  padding: 1rem 2rem 2rem;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.reorder-manager h1 {
+  font-family: "Faculty Glyphic";
+  color: #F9ECC9;
+  margin: 0 0 1rem;
+}
+
+/* ---------- HEADER ---------- */
+
+.reorder-header {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.reorder-msg {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+}
+
+.reorder-msg.success {
+  color: #7dffb3;
+}
+
+.reorder-msg.error {
+  color: #ff7d7d;
+}
+
+/* ---------- GRID ---------- */
+
+.reorder-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+
+/* ---------- ITEM SORTABLE ---------- */
+
+.reorder-item {
+  display: flex;
+  width: 25%;
+  max-width: 450px;
+  cursor: grab;
+}
+
+.reorder-item.is-dragging {
+  opacity: 0.8;
+  cursor: grabbing;
+}
+
+.reorder-item .card {
+  margin: 10px;
+}
+
+.reorder-item:hover .card,
+.reorder-item:active .card,
+.reorder-item:focus-within .card {
+  pointer-events: none;
+}
+
+/* ---------- BUTTON ---------- */
+
+.reorder-button {
+  cursor: pointer;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.reorder-button:hover {
+  background-color: lightseagreen;
+}
+
+.reorder-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1200px) {
+  .reorder-item {
+    width: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  .reorder-item {
+    width: 100%;
+  }
+}

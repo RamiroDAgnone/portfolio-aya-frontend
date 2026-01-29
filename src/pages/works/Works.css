@@ -1,0 +1,232 @@
+/* ---------- GRID CONTENEDOR ---------- */
+.works {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.5rem;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  justify-items: center;
+}
+
+/* ---------- CARD ---------- */
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 450px;
+  aspect-ratio: 3 / 2;
+
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+
+  color: inherit;
+  text-decoration: none;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.card-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .card-image img {
+    filter: blur(3px);
+    transform: scale(1.05);
+  }
+}
+
+.card-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- OVERLEY ---------- */
+.card-overlay {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1rem;
+    text-align: center;
+
+    background: rgba(0, 0, 0, 0.2);
+
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+
+  .card:hover .card-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- TEXTO ---------- */
+.card h1 {
+  font-family: "Montserrat-Bold", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.detail {
+  font-family: "Montserrat-Bold", sans-serif;
+  font-size: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+
+  padding: 4px 8px;
+  border-radius: 6px;
+
+  color: #fff;
+}
+
+/* ---------- ADMIN ---------- */
+.admin-works-page {
+  padding: 1rem;
+}
+
+.admin-works-header {
+  max-width: 1400px;
+  margin: 0 auto 1.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-works-header h2 {
+  font-size: 2rem;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.admin-btn {
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+
+  background: blueviolet;
+  color: #fff;
+
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.admin-btn:hover {
+  background: darkviolet;
+  transform: translateY(-1px);
+}
+
+.admin-btn.primary {
+  background: #0070f3;
+}
+
+.admin-btn.primary:hover {
+  background: #0059c1;
+}
+
+.admin-btn.secondary {
+  background: gray;
+}
+
+.admin-btn.secondary:hover {
+  background: darkslategray;
+}
+
+.admin-btn.small {
+  padding: 0.4rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+.admin-card .card-overlay {
+  gap: 0.75rem;
+}
+
+.admin-card-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.status {
+  user-select: none;
+  font-size: 0.75rem;
+}
+
+.status.published {
+  background: #1e8e3e;
+}
+
+.status.draft {
+  background: #b45309;
+}
+
+.status.archived {
+  background: #6b7280;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1250px) {
+  .works {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .works {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .works {
+    padding: 0;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+}
