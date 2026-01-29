@@ -9,6 +9,7 @@
   padding: 0 0 2rem;
   color: #F9ECC9;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 .home-img {
@@ -49,6 +50,7 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
+  overflow: hidden;
 }
 
 .star {
@@ -84,6 +86,12 @@
 .works-wrapper {
   width: 95%;
   min-height: 300px;
+}
+
+/* ---------- CONSTRUCTION ---------- */
+.under-construction{
+  text-align: center;
+  z-index: 1;
 }
 
 /* ---------- RESPONSIVE ---------- */
