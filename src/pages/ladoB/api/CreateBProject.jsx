@@ -4,6 +4,7 @@ import { authFetch } from "../../../auth/authFetch";
 import { useImageFiles } from "../../../utils/useImageFiles";
 import { uploadImages } from "../../../utils/uploadImages.js";
 import { useVideos } from "../../../utils/useVideos";
+import { UPLOAD_CONCURRENCY } from "../../../config/uploads.js";
 
 import BProjectForm from "./BProjectForm";
 
@@ -66,7 +67,8 @@ export default function CreateBProject() {
       const uploads = await uploadImages({
         workId: created._id,
         files,
-        uploadImage
+        uploadImage,
+        concurrency: UPLOAD_CONCURRENCY
       });
 
       await authFetch(`/bprojects/admin/${created._id}`, {

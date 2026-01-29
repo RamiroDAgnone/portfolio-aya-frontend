@@ -2,7 +2,7 @@ export async function uploadImages({
   workId,
   files,
   uploadImage,
-  concurrency = 3
+  concurrency = 2
 }) {
   const taskFns = [];
 
@@ -102,10 +102,5 @@ export async function uploadImages({
       }).filter(Boolean);
   }
 
-  // devolver info de errores
-  const failed = results
-    .map(r => r && r.status === "rejected" ? r.reason : null)
-    .filter(Boolean);
-
-  return { updates, failed };
+  return updates;
 }

@@ -4,6 +4,7 @@ import { authFetch } from "../../../auth/authFetch";
 import { useImageFiles } from "../../../utils/useImageFiles";
 import { uploadImages } from "../../../utils/uploadImages";
 import { useVideos } from "../../../utils/useVideos";
+import { UPLOAD_CONCURRENCY } from "../../../config/uploads.js";
 
 import WorkForm from "./WorkForm";
 
@@ -94,7 +95,8 @@ export default function EditWork() {
       const uploads = await uploadImages({
         workId: selectedId,
         files,
-        uploadImage
+        uploadImage,
+        concurrency: UPLOAD_CONCURRENCY
       });
 
       /* ---------- LIMPIAR VIDEOS ---------- */
