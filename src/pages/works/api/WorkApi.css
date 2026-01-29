@@ -173,6 +173,10 @@
   background: #ccc;
 }
 
+.error, .image-error {
+  color: red;
+}
+
 /* ---------- VIDEOS  ---------- */
 
 .video-row{

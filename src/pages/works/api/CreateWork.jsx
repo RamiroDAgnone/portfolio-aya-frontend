@@ -99,7 +99,7 @@ const {
         })
       });
 
-      navigate(`/trabajos/${formData.slug}`);
+      navigate("/admin/works");
     } catch (err) {
       setError(err.message || "Error creando campaña");
     } finally {

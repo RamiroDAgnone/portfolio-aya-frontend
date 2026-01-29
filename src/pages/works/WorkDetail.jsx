@@ -179,13 +179,16 @@ export default function WorkDetail() {
         )}
 
         <div className="work-description">
-          <h1>{trabajo.title}</h1>
-          {trabajo.description?.split("\n").map((line, i) => (
-            <p key={i}>{line}</p>
-          ))}
-          
+          <div>
+            <h1>{trabajo.title}</h1>
+            {trabajo.description?.split("\n").map((line, i) => (
+              <p key={i}>{line}</p>
+            ))}
+          </div>
+          <div className="back-button-conteiner">
+            <Link to="/" className="back-button">Home</Link>
+          </div>
         </div>
-          <Link to="/" className="back-button">Home</Link>
       </div>
 
       {lightboxData && (
