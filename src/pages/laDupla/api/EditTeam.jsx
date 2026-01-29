@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { API_URL } from "../../../auth/constants";
+import { authFetch } from "../../../auth/authFetch";
 import { useImageFiles } from "../../../utils/useImageFiles";
 
 import TeamForm from "./TeamForm";
@@ -29,11 +29,9 @@ export default function EditTeam() {
   });
 
   useEffect(() => {
-    fetch(`${API_URL}/team/${id}`)
-      .then(r => r.json())
-      .then(data => {
-        setMember(data);
-      });
+    authFetch(`/team/admin/${id}`).then(data => {
+      if (data) setMember(data);
+    });
   }, [id]);
 
   async function handleUpdate(formData) {
@@ -49,13 +47,10 @@ export default function EditTeam() {
         imagePayload.image = image;
       }
 
-      await fetch(`${API_URL}/team/${id}`, {
+      await authFetch(`/team/admin/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...formData,
-          ...imagePayload
-        })
+        body: JSON.stringify({ ...formData, ...imagePayload })
       });
 
       navigate("/la-dupla");

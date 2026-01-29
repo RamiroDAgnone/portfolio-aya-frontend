@@ -76,6 +76,7 @@ export default function LaDupla({ page }) {
               linkedin={d.socials?.linkedin}
               instagram={d.socials?.instagram}
               cv={d.socials?.cv}
+              email={d.socials?.email}
             />
           ))}
       </div>

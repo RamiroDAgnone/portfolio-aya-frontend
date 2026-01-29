@@ -114,6 +114,7 @@ export default function TeamForm({
         <label>Link completo a perfil de LinkedIn</label>
         <input
           name="socials.linkedin"
+          placeholder="https://www.linkedin.com/in/nombre-usuario/"
           value={formData.socials.linkedin}
           onChange={handleChange}
         />
@@ -121,13 +122,23 @@ export default function TeamForm({
         <label>Link completo a perfil de Instagram</label>
         <input
           name="socials.instagram"
+          placeholder="https://www.instagram.com/nombre.usuario/"
           value={formData.socials.instagram}
+          onChange={handleChange}
+        />
+
+        <label>Mail completo</label>
+        <input
+          name="socials.emnail"
+          placeholder="nombre@mai.com"
+          value={formData.socials.email}
           onChange={handleChange}
         />
 
         <label>Link completo al alojamiento del CV (PDF)</label>
         <input
           name="socials.cv"
+          placeholder="https://drive.google.com/file/d/nombre_del_documento/view?usp=drive_link"
           value={formData.socials.cv}
           onChange={handleChange}
         />

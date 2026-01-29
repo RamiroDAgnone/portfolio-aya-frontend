@@ -1,10 +1,10 @@
 import { getResponsiveImageProps } from "../../utils/imageVariants";
 import { FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import { IoMdBookmarks } from "react-icons/io";
+import { IoMdBookmarks, IoIosMail } from "react-icons/io";
 
 import "./LaDupla.css";
 
-export default function unaDupla({ name, role, description, image, layout, linkedin, instagram, cv }) {
+export default function unaDupla({ name, role, description, image, layout, linkedin, instagram, cv, email }) {
     return (
         <section className={`about-section ${layout}`}>
             {image && image.sizes && (
@@ -31,6 +31,9 @@ export default function unaDupla({ name, role, description, image, layout, linke
                     </li>
                     <li>
                         <a href={cv} target="_blank" rel="noreferrer" ><IoMdBookmarks /> CV</a>
+                    </li>
+                    <li>
+                        <a href={email} target="_blank" rel="noreferrer" ><IoIosMail /> Mail</a>
                     </li>
                 </ul>
              </div>

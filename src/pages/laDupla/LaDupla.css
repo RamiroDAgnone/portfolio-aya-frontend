@@ -151,6 +151,7 @@
 
 .about-photo {
     width: 200px;
+    height: 200px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid #73352F;
@@ -265,6 +266,7 @@
 
     .about-section.left .about-list,
     .about-section.right .about-list{
+        flex-wrap: wrap;
         justify-content: center;
     }
 

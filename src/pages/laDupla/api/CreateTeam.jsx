@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { API_URL } from "../../../auth/constants";
+import { authFetch } from "../../../auth/authFetch";
 import { useImageFiles } from "../../../utils/useImageFiles";
 
 import TeamForm from "./TeamForm";
@@ -29,28 +29,18 @@ export default function CreateTeam() {
 
     setLoading(true);
     try {
-      const res = await fetch(`${API_URL}/team`, {
+      const created = await authFetch("/team/admin", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
       });
 
-      const created = await res.json();
-
       if (files.image) {
-        const image = await uploadImage(
-          created._id,
-          files.image,
-          "image"
-        );
-
-        await fetch(`${API_URL}/team/${created._id}`, {
+        const image = await uploadImage(created._id, files.image, "image");
+        await authFetch(`/team/admin/${created._id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ...formData,
-            image
-          })
+          body: JSON.stringify({ ...formData, image })
         });
       }
 
