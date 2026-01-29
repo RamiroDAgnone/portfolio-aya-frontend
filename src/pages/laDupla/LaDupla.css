@@ -152,6 +152,20 @@
     justify-content: flex-end;
 }
 
+.about-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #14110E;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.about-link:hover {
+    text-decoration: underline;
+    color: #73352F;
+}
+
 .about-photo {
     width: 200px;
     height: 200px;
@@ -166,12 +180,14 @@
 }
 
 .about-text h2 {
+    font-family: "Faculty Glyphic";
     margin-bottom: 0.5rem;
     color: #14110E;
 }
 
-.about-text span {
+.about-text .role {
     font-family: "Monserrat-Bold";
+    margin-bottom: 1rem;
 }
 
 .about-text p {

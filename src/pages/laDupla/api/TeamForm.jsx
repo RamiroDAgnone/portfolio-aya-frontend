@@ -22,7 +22,8 @@ export default function TeamForm({
     socials: {
       linkedin: "",
       instagram: "",
-      cv: ""
+      cv: "",
+      email: ""
     }
   });
 
@@ -42,7 +43,8 @@ export default function TeamForm({
       socials: {
         linkedin: initialData.socials?.linkedin || "",
         instagram: initialData.socials?.instagram || "",
-        cv: initialData.socials?.cv || ""
+        cv: initialData.socials?.cv || "",
+        email: initialData.socials?.email || ""
       }
     });
   }, [initialData]);
@@ -129,7 +131,7 @@ export default function TeamForm({
 
         <label>Mail completo</label>
         <input
-          name="socials.emnail"
+          name="socials.email"
           placeholder="nombre@mai.com"
           value={formData.socials.email}
           onChange={handleChange}

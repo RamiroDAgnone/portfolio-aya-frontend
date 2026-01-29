@@ -1,10 +1,12 @@
 import { getResponsiveImageProps } from "../../utils/imageVariants";
 import { FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import { IoMdBookmarks, IoIosMail } from "react-icons/io";
-
+import { IoMdBookmarks, IoIosMail, IoIosMailOpen } from "react-icons/io";
+import { useState } from "react";
 import "./LaDupla.css";
 
-export default function unaDupla({ name, role, description, image, layout, linkedin, instagram, cv, email }) {
+export default function UnaDupla({ name, role, description, image, layout, linkedin, instagram, cv, email }) {
+    const [copied, setCopied] = useState(false);
+
     return (
         <section className={`about-section ${layout}`}>
             {image && image.sizes && (
@@ -20,7 +22,7 @@ export default function unaDupla({ name, role, description, image, layout, linke
                     
             <div className="about-text">
                 <h2>{name}</h2>
-                <span>{role}</span>
+                <span className="role">{role}</span>
                 {description?.split("\n").map((line, i) => (
                     <p key={i}>{line}</p>
                 ))}
@@ -35,7 +37,17 @@ export default function unaDupla({ name, role, description, image, layout, linke
                         <a href={cv} target="_blank" rel="noreferrer" ><IoMdBookmarks /> CV</a>
                     </li>
                     <li>
-                        <a href={email} target="_blank" rel="noreferrer" ><IoIosMail /> Mail</a>
+                        <span
+                            className={`about-link ${copied ? "copied" : ""}`}
+                            onClick={() => {
+                                navigator.clipboard.writeText(email);
+                                setCopied(true);
+                                setTimeout(() => setCopied(false), 1500);
+                            }}
+                        > 
+                            {copied ? <IoIosMailOpen /> : <IoIosMail />}
+                            {copied ? "Copiado!" : email}
+                        </span>
                     </li>
                 </ul>
              </div>
