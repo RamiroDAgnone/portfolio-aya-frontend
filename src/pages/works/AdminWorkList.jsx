@@ -7,6 +7,12 @@ import "./Works.css";
 
 export default function AdminWorkList() {
   const [works, setWorks] = useState([]);
+  const [activeOverlay, setActiveOverlay] = useState(null);
+  const [statusFilter, setStatusFilter] = useState("");
+  
+  const filteredWorks = statusFilter
+  ? works.filter(work => work.status === statusFilter)
+  : works;
 
   useEffect(() => {
     authFetch("/works/admin").then(setWorks);
@@ -18,6 +24,17 @@ export default function AdminWorkList() {
         <h2>Trabajos</h2>
 
         <div className="admin-actions">
+          <select
+            value={statusFilter}
+            onChange={e => setStatusFilter(e.target.value)}
+            className="admin-btn select-filter"
+          >
+            <option value="">Todos</option>
+            <option value="draft">Borrador</option>
+            <option value="published">Publicado</option>
+            <option value="archived">Archivado</option>
+          </select>
+
           <Link to="/admin/work/create" className="admin-btn primary">
             Crear trabajo
           </Link>
@@ -29,12 +46,14 @@ export default function AdminWorkList() {
       </header>
 
       <div className="works">
-        {works.map(work => {
+        {filteredWorks.map(work => {
           const hasImage = Boolean(work.cover && work.cover.sizes);
 
           return (
             <div key={work._id} className="card admin-card">
-              <div className="card-image">
+              <div className="card-image" key={work._id} 
+                onClick={() => setActiveOverlay(activeOverlay === work._id ? null : work._id)} 
+              >
                 {hasImage ? (
                   <img
                     {...getResponsiveImageProps({
@@ -53,7 +72,10 @@ export default function AdminWorkList() {
                 )}
               </div>
               
-              <div className="card-overlay">
+              <div className={`card-overlay ${
+                activeOverlay === work._id ? "active-mobile" : ""
+                }`}
+              >
                 <h1>{work.title}</h1>
 
                 <span className={`detail status ${work.status}`}>

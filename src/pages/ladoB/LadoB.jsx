@@ -55,7 +55,7 @@ export default function LadoB({ page }) {
       <div className="ladoB-projects">
         {projects.map((project, index) => (
           <ProyectoB
-            key={project._id}
+            key={project.id}
             title={project.title}
             description={project.description}
             graphics={project.graphics || []}

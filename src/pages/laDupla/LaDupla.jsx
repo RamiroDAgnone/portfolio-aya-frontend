@@ -66,10 +66,9 @@ export default function LaDupla({ page }) {
 
       <div className="us-container">
         {dupla
-          .filter(d => d.active)
           .map(d => (
             <UnaDupla
-              key={d._id}
+              key={d.id}
               name={d.name}
               role={d.role}
               description={d.description}
