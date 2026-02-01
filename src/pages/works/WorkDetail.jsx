@@ -106,6 +106,9 @@ export default function WorkDetail() {
               image: trabajo.logo,
               sizes: "(max-width: 768px) 60vw, 30vw"
             })}
+            style={{
+              aspectRatio: `${trabajo.logo.sizes[600].realWidth} / ${trabajo.logo.sizes[600].realHeight}`
+            }}
             loading="eager"
             decoding="async"
             alt={trabajo.title}
@@ -137,10 +140,12 @@ export default function WorkDetail() {
                 key={index}
                 {...getResponsiveImageProps({
                   image: img,
-                  sizes: "(max-width: 768px) 95vw, 1200px"
+                  sizes: "(max-width: 768px) 95vw, 1200px",
+                  context: "normal"
                 })}
-                loading="lazy"
-                decoding="async"
+                 style={{
+                  aspectRatio: `${img.sizes[600].realWidth} / ${img.sizes[600].realHeight}`
+                }}
                 alt={trabajo.title}
                 onClick={() =>
                   setLightboxData({
@@ -164,8 +169,9 @@ export default function WorkDetail() {
                   image: img,
                   sizes: "(max-width: 768px) 90vw, 280px"
                 })}
-                loading="lazy"
-                decoding="async"
+                style={{
+                  aspectRatio: `${img.sizes[600].realWidth} / ${img.sizes[600].realHeight}`
+                }}
                 alt={`${trabajo.title} ${index + 1}`}
                 onClick={() =>
                   setLightboxData({

@@ -5,21 +5,24 @@ export function getResponsiveImageProps({
   sizes = "100vw",
   context = "normal"
 }) {
-  if (!image || !image.sizes) {
-    throw new Error("image con sizes es requerido");
-  }
+  if (!image?.sizes) return {};
 
   const available = Object.entries(image.sizes)
-    .map(([key, val]) => ({
-      width: Number(key),
-      path: val.path
-    }))
-    .filter(v => !Number.isNaN(v.width))
+    .map(([key, val]) => {
+      const width = Number(key);
+      if (Number.isNaN(width) || !val?.path) return null;
+
+      return {
+        width,
+        height: val.realHeight,
+        ratio: val.ratio,
+        path: val.path
+      };
+    })
+    .filter(Boolean)
     .sort((a, b) => a.width - b.width);
 
-  if (!available.length) {
-    throw new Error("No hay tamaños disponibles");
-  }
+  if (!available.length) return {};
 
   let targetWidth;
 
@@ -40,15 +43,19 @@ export function getResponsiveImageProps({
     available.find(v => v.width >= targetWidth) ||
     available[available.length - 1];
 
-  return {
+  const props = {
     src: `${ASSETS_URL}${srcCandidate.path}`,
     srcSet: available
       .map(v => `${ASSETS_URL}${v.path} ${v.width}w`)
       .join(", "),
     sizes,
     loading: "lazy",
-    decoding: "async"
+    decoding: "async",
+    width: srcCandidate.width,
+    height: srcCandidate.height
   };
+
+  return props;
 }
 
 export function getLightboxSources(image) {
