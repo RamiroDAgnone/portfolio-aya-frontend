@@ -46,42 +46,8 @@ export const getImageSrc = (image, size = 600, assetsUrl = ASSETS_URL) => {
   return null;
 };
 
-export async function createDownscaledPreview(file, maxWidth = 300, quality = 0.5) {
-  if (!isBlob(file)) return null;
-
-  return new Promise(resolve => {
-    const tmpUrl = URL.createObjectURL(file);
-    const img = new Image();
-
-    img.onload = () => {
-      try {
-        const ratio = img.width ? Math.min(1, maxWidth / img.width) : 1;
-        const width = Math.max(1, Math.round(img.width * ratio));
-        const height = Math.max(1, Math.round(img.height * ratio));
-
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
-        const ctx = canvas.getContext("2d");
-
-        ctx.drawImage(img, 0, 0, width, height);
-        const dataUrl = canvas.toDataURL("image/jpeg", quality);
-
-        resolve(dataUrl);
-      } catch (err) {
-        resolve(tmpUrl);
-      } finally {
-        try { URL.revokeObjectURL(tmpUrl); } catch {}
-      }
-    };
-
-    img.onerror = () => {
-      try { URL.revokeObjectURL(tmpUrl); } catch {}
-      resolve(null);
-    };
-
-    img.src = tmpUrl;
-  });
+export async function createDownscaledPreview(file) {
+   return URL.createObjectURL(file);
 }
 
 // getPreviewSrc(input, size = 600, assetsUrl = ASSETS_URL)

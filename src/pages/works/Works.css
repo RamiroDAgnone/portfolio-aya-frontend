@@ -142,7 +142,17 @@
 
 .admin-actions {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.75rem;
+  text-align: center;
+}
+
+.admin-actions a {
+  width: 150px;
+}
+.admin-btn.select-filter{
+  width: 180px;
 }
 
 .admin-btn {
@@ -161,7 +171,6 @@
 
 .admin-btn:hover {
   background: darkviolet;
-  transform: translateY(-1px);
 }
 
 .admin-btn.primary {
@@ -173,20 +182,26 @@
 }
 
 .admin-btn.secondary {
-  background: gray;
+  background-color: #38e298;
 }
 
 .admin-btn.secondary:hover {
-  background: darkslategray;
+  background: #38e253;
 }
 
 .admin-btn.small {
   padding: 0.4rem 0.7rem;
-  font-size: 0.85rem;
+  font-size: 1.5rem;
+  min-width: 6rem;
 }
 
 .admin-card .card-overlay {
   gap: 0.75rem;
+}
+.card-overlay .detail{
+  font-size: 1.1rem;
+  padding: 6px 10px;
+  border-radius: 8px;
 }
 
 .admin-card-actions {
@@ -292,11 +307,7 @@
   .card-overlay .admin-btn.small {
     padding: 0.5rem 0.8rem;
     font-size: 2rem;
-    border: 1px solid #000;
     min-width: 5rem;
-  }
-  .card-overlay .admin-btn.secondary{
-    background-color: #D7B88A;
   }
 
   .card-overlay img {

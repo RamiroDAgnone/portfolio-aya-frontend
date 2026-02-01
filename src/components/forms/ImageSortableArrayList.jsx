@@ -54,20 +54,28 @@ const ImageRowContent = React.memo(function ImageRowContent({
   const [error, setError] = useState(null);
 
   const handleFileChange = e => {
-    const file = e.target.files[0];
-    const validationError = validateImageFile(file);
+    const files = Array.from(e.target.files);
+    if (files.length === 0) return;
 
-    if (validationError) {
-      setError(validationError);
-      onValidationChange(item.id, true);
-      return;
+    const validFiles = [];
+
+    for (const file of files) {
+      const validationError = validateImageFile(file);
+      if (validationError) {
+        setError(validationError);
+        onValidationChange(item.id, true);
+        return;
+      }
+      validFiles.push(file);
     }
 
-    setError(null);
+    // La primera imagen reemplaza la fila actual
     onValidationChange(item.id, false);
-    onFileChange(item.id, file);
+    onFileChange(item.id, validFiles, {
+      mode: "replace-and-append"
+    });
+    e.target.value = "";
   };
-
 
   const handleBlur = useCallback(() => {
     if (localDesc !== (item.description || "")) {
@@ -92,6 +100,7 @@ const ImageRowContent = React.memo(function ImageRowContent({
           <input
             type="file"
             accept="image/*"
+            multiple
             onChange={handleFileChange}
           />
         )}

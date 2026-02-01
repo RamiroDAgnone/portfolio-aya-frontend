@@ -1,7 +1,7 @@
 /* ---------- REORDER MANAGER ---------- */
 
 .reorder-manager {
-  background-color: #333;
+  background-color: #f0f2f5;
   padding: 1rem 2rem 2rem;
   min-height: 100vh;
   text-align: center;
@@ -9,7 +9,6 @@
 
 .reorder-manager h1 {
   font-family: "Faculty Glyphic";
-  color: #F9ECC9;
   margin: 0 0 1rem;
 }
 
@@ -69,11 +68,16 @@
 /* ---------- BUTTON ---------- */
 
 .reorder-button {
+  background-color: #0070f3;
+  color: #fff;
   cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 6px;
   padding: 0.8rem 1.2rem;
   border: none;
   font-weight: bold;
-  transition: background-color 0.3s;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .reorder-button:hover {

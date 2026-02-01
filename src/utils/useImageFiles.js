@@ -80,17 +80,93 @@ const normalizeArray = (items = []) =>
 
   // array handlers factory
   const createArrayHandlers = field => {
+    const onFileChange = (id, payload, options = {}) => {
+    // multi-select
+      if (options.mode === "replace-and-append") {
+        setFiles(prev => {
+          const list = [...prev[field]];
+          const index = list.findIndex(i => i.id === id);
+          if (index === -1) return prev;
 
-    const onFileChange = (id, file) => {
-      const key = `${field}_${id}`;
-      if (!validateImage(key, file)) return;
+          const baseOrder = Math.max(
+            0,
+            ...list.map(i => i.order ?? 0)
+          );
 
-      setFiles(prev => ({
-        ...prev,
-        [field]: prev[field].map(item =>
-          item.id === id ? { ...item, file } : item
-        )
-      }));
+          // Reemplaza fila actual con la primera imagen
+          list[index] = {
+            ...list[index],
+            file: payload[0]
+          };
+
+          // Crea nuevas filas para el resto
+          const newItems = payload.slice(1).map((file, i) => {
+            const newId = genId();
+            const key = `${field}_${newId}`;
+            if (!validateImage(key, file)) return null;
+
+            return {
+              id: newId,
+              current: null,
+              file,
+              remove: false,
+              description: "",
+              order: baseOrder + (i + 1) * 10
+            };
+          }).filter(Boolean);
+
+          return {
+            ...prev,
+            [field]: [...list, ...newItems]
+          };
+        });
+
+        return;
+      }
+
+      // REEMPLAZO SIMPLE
+      if (!options.mode) {
+        const key = `${field}_${id}`;
+        if (!validateImage(key, payload)) return;
+
+        setFiles(prev => ({
+          ...prev,
+          [field]: prev[field].map(item =>
+            item.id === id ? { ...item, file: payload } : item
+          )
+        }));
+        return;
+      }
+      if (options.mode === "append") {
+        setFiles(prev => {
+          const baseOrder = Math.max(
+            0,
+            ...prev[field].map(i => i.order ?? 0)
+          );
+
+          const newItems = payload.map((file, index) => {
+            const newId = genId();
+            const key = `${field}_${newId}`;
+            if (!validateImage(key, file)) return null;
+
+            return {
+              id: newId,
+              current: null,
+              file,
+              remove: false,
+              description: "",
+              order: baseOrder + (index + 1) * 10
+            };
+          }).filter(Boolean);
+
+          if (!newItems.length) return prev;
+
+          return {
+            ...prev,
+            [field]: [...prev[field], ...newItems]
+          };
+        });
+      }
     };
 
     const onDescChange = (id, value) => {

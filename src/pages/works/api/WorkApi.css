@@ -122,11 +122,8 @@
 .image-first-row{
   display: flex;
   align-items: center;
-  max-height: 140px;
-}
-
-.image-row input {
-  flex: 1;
+  max-height: none;
+  gap: 0.5rem;
 }
 
 .image-row button, .video-row button{
@@ -165,7 +162,7 @@
 
 .single-image-preview {
   max-width: 200px;
-  height: 160px;
+  max-height: 140px;
   object-fit: contain;
 }
 
@@ -232,4 +229,36 @@
 
 .color-row .color-square{
   cursor: pointer;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 768px) {
+
+  .create-work-container,
+  .work-api-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .image-first-row{
+    flex-direction: column;
+    max-height: none;
+  }
+  .image-first-row input{
+    text-align: center;
+  }
+
+  .color-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .color-row .color-square,
+  .color-row .color-hex {
+    width: 100%;
+  }
+
+  .color-row .color-square{
+    margin-bottom: 10px;
+  }
 }

@@ -91,7 +91,7 @@ export default function CreateBProject() {
 
   return (
     <div className="api-conteiner">
-      <div className="create-work-container">
+      <div className="work-api-container">
         {error && <p className="form-error">{error}</p>}
 
         <BProjectForm

@@ -35,13 +35,9 @@ export function useSinglePreview(item, size = 600) {
       try {
         const input = item && item.file ? item.file : item;
         const src = await getPreviewSrc(input, size, ASSETS_URL);
-        if (!active) {
-          // cleanup newly created blob if unmounted
-          if (typeof src === "string" && src.startsWith("blob:")) {
-            try { URL.revokeObjectURL(src); } catch {}
-          }
-          return;
-        }
+        
+        // si el componente sigue montado
+        if (!active) return;
 
         // revoke previous blob url if distinto
         const prev = prevUrlRef.current;

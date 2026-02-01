@@ -9,6 +9,11 @@ export default function AdminWorkList() {
   const [works, setWorks] = useState([]);
   const [activeOverlay, setActiveOverlay] = useState(null);
   const [statusFilter, setStatusFilter] = useState("");
+  const STATUS_LABELS = {
+    draft: "Borrador",
+    published: "Publicado",
+    archived: "Archivado"
+  };
   
   const filteredWorks = statusFilter
   ? works.filter(work => work.status === statusFilter)
@@ -37,6 +42,10 @@ export default function AdminWorkList() {
 
           <Link to="/admin/work/create" className="admin-btn primary">
             Crear trabajo
+          </Link>
+
+          <Link to="/admin/work/reorder" className="admin-btn primary">
+            Reordenar
           </Link>
 
           <Link to="/" className="admin-btn secondary" target="_blank">
@@ -79,13 +88,13 @@ export default function AdminWorkList() {
                 <h1>{work.title}</h1>
 
                 <span className={`detail status ${work.status}`}>
-                  {work.status}
+                  {STATUS_LABELS[work.status] ?? work.status}
                 </span>
 
                 <div className="admin-card-actions">
                   <Link
                     to={`/admin/work/edit/${work._id}`}
-                    className="admin-btn small"
+                    className="admin-btn small primary"
                   >
                     Editar
                   </Link>
