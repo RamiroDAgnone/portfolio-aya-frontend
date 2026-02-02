@@ -23,23 +23,34 @@ export default function ProyectoB({
     <article className={`proyectoB ${reverse ? "proyectoB-reverse" : ""}`}>
       <div className="proyectoB-image">
         <div className="proyectoB-imageInner">
-          {mainImage && mainImage.sizes && (
-            <img
-              {...getResponsiveImageProps({
-                image: mainImage,
-                sizes: "(max-width: 768px) 95vw, 1200px"
-              })}
-              loading="lazy"
-              decoding="async"
-              alt={title}
-              onClick={() =>
-                setLightboxData({
-                  images: graphics,
-                  index: 0
-                })
-              }
-            />
-          )}
+          {mainImage && mainImage.sizes && (() => {
+            const baseSize =
+              mainImage.sizes?.[600] || Object.values(mainImage.sizes)[0];
+
+            return (
+              <img
+                {...getResponsiveImageProps({
+                  image: mainImage,
+                  sizes: "(max-width: 768px) 95vw, 1200px"
+                })}
+                width={baseSize.realWidth}
+                height={baseSize.realHeight}
+                style={{
+                  aspectRatio: `${baseSize.realWidth} / ${baseSize.realHeight}`
+                }}
+                loading="lazy"
+                decoding="async"
+                alt={title}
+                onClick={() =>
+                  setLightboxData({
+                    images: graphics,
+                    index: 0
+                  })
+                }
+              />
+            );
+          })()}
+
         </div>
       </div>
 

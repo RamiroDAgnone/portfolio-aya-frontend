@@ -1,6 +1,7 @@
 import MediaSection from "../../../components/forms/MediaSection";
 import { useImageValidation } from "../../../utils/useImageValidation";
 
+import { PAGE_RULES } from "../../../utils/previews/pageRules";
 import "../../works/api/WorkApi.css";
 
 export default function PageForm({
@@ -27,6 +28,7 @@ export default function PageForm({
   const { registerValidation, hasInvalidImages } = useImageValidation();
 
   if (!formData || !files) return null;
+  const rules = PAGE_RULES[formData.slug] ?? PAGE_RULES.default;
 
   return (
     <form className="work-form" onSubmit={onSubmit}>
@@ -89,36 +91,48 @@ export default function PageForm({
       </div>
 
       <MediaSection
-        singleImages={[
-          {
-            key: "image",
-            title: "Imagen principal",
-            file: files.image,
-            current: formData.image,
-            error: fileErrors?.image,
-            onChange: file => onFileChange("image", file),
-            onValidationChange: hasError =>
-              registerValidation("image", hasError)
-          }
-        ]}
-        imageArrays={[
-          {
-            title: "Galería",
-            items: files.graphics,
-            controls: {
-              ...graphics,
-              onValidationChange: registerValidation
-            }
-          }
-        ]}
-        videosConfig={{
-          title: "Videos",
-          videos,
-          onAdd: onVideoAdd,
-          onChange: onVideoChange,
-          onRemove: onVideoRemove,
-          onReorder: reorderVideos
-        }}
+        singleImages={
+          rules.singleImage
+            ? [
+                {
+                  key: "image",
+                  title: "Imagen principal",
+                  file: files.image,
+                  current: formData.image,
+                  error: fileErrors?.image,
+                  onChange: file => onFileChange("image", file),
+                  onValidationChange: hasError =>
+                    registerValidation("image", hasError)
+                }
+              ]
+            : []
+        }
+        imageArrays={
+          rules.gallery
+            ? [
+                {
+                  title: "Galería",
+                  items: files.graphics,
+                  controls: {
+                    ...graphics,
+                    onValidationChange: registerValidation
+                  }
+                }
+              ]
+            : []
+        }
+        videosConfig={
+          rules.videos
+            ? {
+                title: "Videos",
+                videos,
+                onAdd: onVideoAdd,
+                onChange: onVideoChange,
+                onRemove: onVideoRemove,
+                onReorder: reorderVideos
+              }
+            : null
+        }
       />
 
       <button type="submit" disabled={loading || hasInvalidFiles || hasInvalidImages}>

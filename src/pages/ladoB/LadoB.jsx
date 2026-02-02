@@ -32,19 +32,29 @@ export default function LadoB({ page }) {
   return (
     <section className="ladoB"  style={{ backgroundColor: page.backgroundColor }}>
       <header className="ladoB-header">
-        {page.image && page.image.sizes && (
-          <div className="ladoB-logo">
-            <img
-              {...getResponsiveImageProps({
-                image: page.image,
-                sizes: "(max-width: 768px) 90vw, 1200px"
+        {page.image && page.image.sizes && (() => {
+          const baseSize =
+            page.image.sizes[600] || Object.values(page.image.sizes)[0];
+
+          return (
+            <div className="ladoB-logo">
+              <img
+                {...getResponsiveImageProps({
+                  image: page.image,
+                  sizes: "(max-width: 768px) 90vw, 1200px"
                 })}
+                width={baseSize.realWidth}
+                height={baseSize.realHeight}
+                style={{
+                  aspectRatio: `${baseSize.realWidth} / ${baseSize.realHeight}`
+                }}
                 loading="eager"
                 decoding="async"
                 alt={page.title}
               />
-          </div>
-        )}
+            </div>
+          );
+        })()}
 
         {page.description?.split("\n").map((line, i) => (
           <p key={i} className="ladoB-description">{line}</p>

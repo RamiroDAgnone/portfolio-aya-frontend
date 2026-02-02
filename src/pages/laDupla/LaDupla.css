@@ -7,6 +7,7 @@
     padding: 3rem 1rem;
     gap: 2rem;
     background-color: #73352F;
+    overflow-x: hidden;
 }
 
 /* ---------- Shared Card Style ---------- */
@@ -23,38 +24,44 @@
 /* ---------- Dupla Container ---------- */
 
 .dupla-container {
-    width: 90%;
+    width: 100%;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: visible;
 }
 
 .dupla-layout {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 2rem;
     align-items: center;
     width: 100%;
+    padding-inline: 60px;
+    box-sizing: border-box;
+    overflow: visible;
 }
 
 /* ---------- Images ---------- */
 
 .dupla-img {
-    width: 100%;
-    max-width: 420px;
-    aspect-ratio: 4 / 4;
+    width: 420px;
+    height: 420px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: visible;
 }
 
 .dupla-photo {
-    max-width: 420px;
-    max-height: 420px;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
     height: auto;
-    user-select: none;
+    object-fit: contain;
+    display: block;
 }
 
 /* ---------- Description ---------- */
@@ -89,8 +96,8 @@
 /* ---------- Image Transforms ---------- */
 
 .dupla-1 img { transform: rotate(-4deg) translate(-10px, 5px); }
-.dupla-2 img { transform: rotate(3deg) translate(15px, -10px); }
-.dupla-3 img { transform: rotate(2deg) translate(-15px, 10px); }
+.dupla-2 img { transform: rotate(3deg) translate(10px, -6px); }
+.dupla-3 img { transform: rotate(2deg) translate(-10px, 8px); }
 .dupla-4 img { transform: rotate(-3deg) translate(10px, -5px); }
 .dupla-5 img { transform: rotate(3deg) translate(10px, -5px); }
 
@@ -226,6 +233,8 @@
     .dupla-layout {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
+        padding-inline: 0;
+        grid-auto-flow: row;
         gap: 1.5rem;
     }
 
@@ -239,14 +248,27 @@
     }
 
     .dupla-photo {
-        max-width: 280px;
-        max-height: 360px;
         width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: none;
+    }
+
+    .dupla-img {
+        width: 100%;
+        height: auto;
+        padding: 0;
+        grid-column: 1;
+        grid-row: auto
     }
 
     .dupla-desc {
         margin: 0;
+        grid-column: 1;
+        grid-row: 1;
+        grid-row: auto;
         text-align: justify;
+        margin-top: 1rem;
     }
 
     .dupla-1:hover img,
@@ -255,6 +277,11 @@
     .dupla-4:hover img,
     .dupla-5:hover img {
         animation: none;
+    }
+
+    .dupla-4,
+    .dupla-5 {
+        display: none;
     }
 
     .us-container {

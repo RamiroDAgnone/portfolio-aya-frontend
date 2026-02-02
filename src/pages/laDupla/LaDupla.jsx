@@ -35,32 +35,42 @@ export default function LaDupla({ page }) {
     >
       <div className="dupla-container">
         <div className="dupla-layout">
-          {page.graphics?.map((img, i) => (
-            <div key={i} className={`dupla-img dupla-${i + 1}`}>
-              <img
-                className="dupla-photo"
-                loading="lazy"
-                decoding="async"
-                {...getResponsiveImageProps({
-                  image: img,
-                  sizes: "(max-width: 768px) 90vw, 1200px"
-                })}
-                alt={page.title}
-                onClick={() =>
-                  setLightboxData({
-                    images: page.graphics,
-                    i
-                  })
-                }
-              />
-            </div>
-          ))}
           <div className="dupla-desc">
             <h1>{page.title}</h1>
             {page.description?.split("\n").map((line, i) => (
                 <p key={i}>{line}</p>
             ))}
           </div>
+          {page.graphics?.map((img, i) => {
+            const baseSize = img.sizes[600] || Object.values(img.sizes)[0];
+
+            return (
+              <div key={i} className={`dupla-img dupla-${i + 1}`}>
+                <img
+                  className="dupla-photo"
+                  {...getResponsiveImageProps({
+                    image: img,
+                    sizes: "(max-width: 768px) 90vw, 420px"
+                  })}
+                  width={baseSize.realWidth}
+                  height={baseSize.realHeight}
+                  style={{
+                    aspectRatio: `${baseSize.realWidth} / ${baseSize.realHeight}`
+                  }}
+                  loading="lazy"
+                  decoding="async"
+                  alt={page.title}
+                  onClick={() =>
+                    setLightboxData({
+                      images: page.graphics,
+                      index: i
+                    })
+                  }
+                />
+              </div>
+            );
+          })}
+
         </div>
       </div>
 

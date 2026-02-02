@@ -102,18 +102,6 @@ export default function TeamForm({
           onChange={handleChange}
           required
         />
-        
-        {/*
-        <label>
-          <input
-            type="checkbox"
-            name="active"
-            checked={formData.active}
-            onChange={handleChange}
-          />
-          Perfil activo (Mantener en tick)
-        </label>
-        */}
 
         <label>Link completo a perfil de LinkedIn</label>
         <input
