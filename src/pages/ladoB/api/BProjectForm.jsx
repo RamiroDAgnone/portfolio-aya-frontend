@@ -31,7 +31,7 @@ export default function BProjectForm({
     <form className="work-form" onSubmit={onSubmit}>
       <h2>{title}</h2>
 
-      <label>Título del Proyecto</label>
+      <h3>Título del Proyecto</h3>
       <input
         name="title"
         placeholder="Título del Proyecto"
@@ -40,7 +40,7 @@ export default function BProjectForm({
         required
       />
 
-      <label>Descripción</label>
+      <h3>Descripción del Proyecto</h3>
       <textarea
         name="description"
         placeholder="Descripción del Proyecto"
@@ -48,7 +48,7 @@ export default function BProjectForm({
         onChange={onChange}
       />
 
-      <label>Autor</label>
+      <h3>Autor</h3>
       <select
         name="author"
         value={formData.author || ""}
@@ -82,6 +82,7 @@ export default function BProjectForm({
             }
           }
         ]}
+        /*
         videosConfig={{
           title: "URL de Videos (YouTube)",
           videos,
@@ -90,6 +91,7 @@ export default function BProjectForm({
           onRemove: onVideoRemove,
           onReorder: reorderVideos
         }}
+        */
       />
 
       <button type="submit" disabled={loading || hasInvalidFiles || hasInvalidImages} className="form-button">

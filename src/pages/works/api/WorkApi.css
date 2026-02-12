@@ -255,7 +255,7 @@ button {
     padding: 1.5rem 1rem;
   }
 
-  .image-first-row{
+  .image-first-row, .image-field{
     flex-direction: column;
     max-height: none;
   }

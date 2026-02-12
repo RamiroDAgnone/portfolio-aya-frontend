@@ -99,7 +99,7 @@ export default function WorkForm({
         singleImages={[
           {
             key: "cover",
-            title: "Cover",
+            title: "Portada de la campaña",
             file: files.cover?.file ?? null,
             current: files.cover?.current ?? formData.cover,
             remove: files.cover?.remove ?? false,
@@ -111,7 +111,7 @@ export default function WorkForm({
           },
           {
             key: "logo",
-            title: "Logo",
+            title: "Logo (lo más cercano a los bordes posible)",
             file: files.logo?.file ?? null,
             current: files.logo?.current ?? formData.logo,
             remove: files.logo?.remove ?? false,
@@ -124,7 +124,7 @@ export default function WorkForm({
         ]}
         imageArrays={[
           {
-            title: "Gráficos",
+            title: "Board o imagenes de campaña grafica",
             items: files.graphics,
             controls: {
               ...graphics,

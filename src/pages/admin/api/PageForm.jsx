@@ -138,7 +138,7 @@ export default function PageForm({
         }
       />
 
-      <button type="submit" disabled={loading || hasInvalidFiles || hasInvalidImages}>
+      <button type="submit" disabled={loading || hasInvalidFiles || hasInvalidImages} className="form-button">
         {loading ? "Guardando..." : submitText}
       </button>
     </form>
