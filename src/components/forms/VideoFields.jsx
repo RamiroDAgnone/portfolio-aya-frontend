@@ -71,6 +71,7 @@ export default function VideoFields({
 
               <button
                 type="button"
+                className="remove-button"
                 onClick={() => onRemove(video.id)}
               >
                 Eliminar
@@ -80,7 +81,7 @@ export default function VideoFields({
         </SortableContext>
       </DndContext>
 
-      <button type="button" onClick={onAdd}>
+      <button type="button" onClick={onAdd} className="add-button">
         + Agregar video
       </button>
     </div>

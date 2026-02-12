@@ -7,11 +7,14 @@ export default function ImageSingleField({
   onChange,
   error,
   onValidationChange,
-  accept = "image/*"
+  accept = "image/*",
+  remove = false,
+  onToggleRemove
 }) {
   const [localError, setLocalError] = React.useState(null);
 
   const handleChange = file => {
+    if (remove) return;
     const validationError = validateImageFile(file);
 
     if (validationError) {
@@ -42,7 +45,24 @@ export default function ImageSingleField({
           type="file"
           accept={accept}
           onChange={e => handleChange(e.target.files[0])}
+          disabled={remove}
         />
+
+        {remove && (
+          <p className="remove-warning">
+            Esta imagen será eliminada al guardar.
+          </p>
+        )}
+
+        {onToggleRemove && (
+          <button
+            type="button"
+            className="remove-button"
+            onClick={onToggleRemove}
+          >
+            {remove ? "Deshacer" : "Eliminar"}
+          </button>
+        )}        
 
         {(error || localError) && (
           <span className="error">

@@ -92,7 +92,7 @@ export default function BProjectForm({
         }}
       />
 
-      <button type="submit" disabled={loading || hasInvalidFiles || hasInvalidImages}>
+      <button type="submit" disabled={loading || hasInvalidFiles || hasInvalidImages} className="form-button">
         {loading ? "Procesando..." : submitText}
       </button>
     </form>

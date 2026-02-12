@@ -6,12 +6,15 @@ const SingleImageBlock = React.memo(function SingleImageBlock({
   title,
   file,
   current,
+  remove,
+  onToggleRemove,
   error,
   onChange,
   onValidationChange
 }) {
-  const preview = useImageSinglePreview({ file, current });
-
+  const previewRaw = useImageSinglePreview({ file, current });
+  const preview = remove ? null : previewRaw;
+  
   return (
     <ImageSingleField
       title={title}
@@ -19,6 +22,8 @@ const SingleImageBlock = React.memo(function SingleImageBlock({
       error={error}
       onChange={onChange}
       onValidationChange={onValidationChange}
+      remove={remove}
+      onToggleRemove={onToggleRemove}
     />
   );
 });

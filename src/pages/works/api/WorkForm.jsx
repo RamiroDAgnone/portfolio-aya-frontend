@@ -12,6 +12,7 @@ export default function WorkForm({
   hasInvalidFiles,
   onChange,
   onFileChange,
+  onToggleRemoveSingle,
 
   graphics,
   extraImages,
@@ -99,20 +100,24 @@ export default function WorkForm({
           {
             key: "cover",
             title: "Cover",
-            file: files.cover,
-            current: formData.cover,
+            file: files.cover?.file ?? null,
+            current: files.cover?.current ?? formData.cover,
+            remove: files.cover?.remove ?? false,
             error: fileErrors?.cover,
             onChange: file => onFileChange("cover", file),
+            onToggleRemove: () => onToggleRemoveSingle("cover"),
             onValidationChange: hasError =>
               registerValidation("cover", hasError)
           },
           {
             key: "logo",
             title: "Logo",
-            file: files.logo,
-            current: formData.logo,
+            file: files.logo?.file ?? null,
+            current: files.logo?.current ?? formData.logo,
+            remove: files.logo?.remove ?? false,
             error: fileErrors?.logo,
             onChange: file => onFileChange("logo", file),
+            onToggleRemove: () => onToggleRemoveSingle("logo"),
             onValidationChange: hasError =>
               registerValidation("logo", hasError)
           }
@@ -145,7 +150,7 @@ export default function WorkForm({
         }}
       />
 
-      <button type="submit" disabled={loading || hasInvalidFiles || hasInvalidImages}>
+      <button type="submit" disabled={loading || hasInvalidFiles || hasInvalidImages} className="form-button">
         {loading ? "Guardando..." : submitText}
       </button>
     </form>

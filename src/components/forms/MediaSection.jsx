@@ -19,6 +19,8 @@ const MediaSection = React.memo(function MediaSection({
           error={img.error}
           onChange={img.onChange}
           onValidationChange={img.onValidationChange}
+          remove={img.remove}
+          onToggleRemove={img.onToggleRemove}
         />
       ))}
 

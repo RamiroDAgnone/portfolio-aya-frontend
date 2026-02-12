@@ -34,6 +34,7 @@ const {
   fileErrors,
   hasInvalidFiles,
   setSingle,
+  toggleSingleRemove,
   imageArrays,
   uploadImage
 } = useImageFiles({
@@ -124,6 +125,7 @@ const {
 
           onChange={handleChange}
           onFileChange={setSingle}
+          onToggleRemoveSingle={toggleSingleRemove}
 
           graphics={imageArrays.graphics}
           extraImages={imageArrays.extraImages}

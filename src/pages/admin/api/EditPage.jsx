@@ -22,6 +22,7 @@ export default function EditPage() {
     fileErrors,
     hasInvalidFiles,
     setSingle,
+    toggleSingleRemove,
     imageArrays,
     uploadImage
   } = useImageFiles({
@@ -78,7 +79,11 @@ export default function EditPage() {
 
     setFiles(prev => ({
       ...prev,
-      image: page.image ?? null,
+      image: {
+        current: page.image ?? null,
+        file: null,
+        remove: false
+      },
       graphics: wrapBackendArray(page.graphics)
     }));
   };
@@ -151,6 +156,7 @@ export default function EditPage() {
 
           onChange={handleChange}
           onFileChange={setSingle}
+          onToggleRemoveSingle={toggleSingleRemove}
 
           graphics={imageArrays.graphics}
 

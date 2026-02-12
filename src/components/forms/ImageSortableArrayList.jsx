@@ -86,7 +86,7 @@ const ImageRowContent = React.memo(function ImageRowContent({
   return (
     <>
       <div className="image-first-row">
-        {preview && (
+        {!item.remove && preview && (
           <img
             src={preview}
             className="single-image-preview"
@@ -96,6 +96,7 @@ const ImageRowContent = React.memo(function ImageRowContent({
           />
         )}
 
+
         {!item.remove && (
           <input
             type="file"
@@ -104,9 +105,16 @@ const ImageRowContent = React.memo(function ImageRowContent({
             onChange={handleFileChange}
           />
         )}
+        
+        {item.remove && (
+          <p className="remove-warning">
+            Esta imagen será eliminada al guardar.
+          </p>
+        )}
 
         <button
           type="button"
+          className="remove-button"
           onClick={() => onToggleRemove(item.id)}
         >
           {item.remove ? "Deshacer" : "Eliminar"}
@@ -175,7 +183,7 @@ export default function ImageSortableArrayList({
         </SortableContext>
       </DndContext>
 
-      <button type="button" onClick={onAdd}>
+      <button type="button" onClick={onAdd} className="add-button">
         + Agregar
       </button>
     </div>

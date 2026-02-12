@@ -82,26 +82,6 @@
   width: 100%;
 }
 
-.create-work-form button, .work-form button {
-  background: #ff6600;
-  color: white;
-  padding: 0.8rem;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.create-work-form button:hover, .work-form button:hover {
-  background: #cc5200;
-}
-
-.create-work-form button:disabled, .work-form button:disabled {
-  background: #999;
-  cursor: not-allowed;
-}
-
 .work-message {
   margin-top: 1rem;
   color: #333;
@@ -122,20 +102,9 @@
 .image-first-row{
   display: flex;
   align-items: center;
+  justify-content: space-between;
   max-height: none;
   gap: 0.5rem;
-}
-
-.image-row button, .video-row button{
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.image-row button:hover, .video-row button:hover {
-  background: #c0392b;
 }
 
 .add-image-btn {
@@ -145,6 +114,12 @@
   padding: 0.5rem;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.remove-warning {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
 }
 
 /* ---------- SINGLE IMAGE  ---------- */
@@ -229,6 +204,46 @@
 
 .color-row .color-square{
   cursor: pointer;
+}
+
+/* ---------- BUTTONS ---------- */
+button {
+  color: white;
+  padding: 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.form-button{
+  background: #28a745;
+}
+
+.form-button:hover {
+  background: #218838;
+}
+
+.remove-button {
+  background: #e74c3c;
+}
+
+.remove-button:hover {
+  background: #c0392b;
+}
+
+.add-button{
+  background: #ff6600;
+}
+
+.add-button:hover {
+  background: #cc5200;
+}
+
+.form-button:disabled {
+  background: #999;
+  cursor: not-allowed;
 }
 
 /* ---------- RESPONSIVE ---------- */

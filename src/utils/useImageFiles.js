@@ -31,7 +31,11 @@ const normalizeArray = (items = []) =>
 
     Object.entries(config).forEach(([field, cfg]) => {
       if (cfg.type === "single") {
-        state[field] = initialData[field] ?? null;
+        state[field] = {
+          current: initialData[field] ?? null,
+          file: null,
+          remove: false
+        };
       }
 
       if (cfg.type === "array") {
@@ -74,8 +78,30 @@ const normalizeArray = (items = []) =>
 
     setFiles(prev => ({
       ...prev,
-      [field]: file
+      [field]: {
+        ...prev[field],
+        file,
+        remove: false
+      }
     }));
+  };
+
+  const toggleSingleRemove = (field) => {
+    setFiles(prev => ({
+      ...prev,
+      [field]: {
+        ...prev[field],
+        remove: !prev[field].remove,
+        file: null // si marca eliminar, limpiamos file nuevo
+      }
+    }));
+
+    // limpiar error si existía
+    setFileErrors(prev => {
+      const copy = { ...prev };
+      delete copy[field];
+      return copy;
+    });
   };
 
   // array handlers factory
@@ -261,6 +287,8 @@ const normalizeArray = (items = []) =>
     hasInvalidFiles,
 
     setSingle,
+    toggleSingleRemove,
+    
     imageArrays,
 
     uploadImage

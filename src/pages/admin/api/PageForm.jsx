@@ -13,6 +13,7 @@ export default function PageForm({
   hasInvalidFiles,
   onChange,
   onFileChange,
+ onToggleRemoveSingle,
 
   graphics,
 
@@ -99,6 +100,8 @@ export default function PageForm({
                   title: "Imagen principal",
                   file: files.image,
                   current: formData.image,
+                  remove: files.image?.remove ?? false,
+                  onToggleRemove: () => onToggleRemoveSingle("image"),
                   error: fileErrors?.image,
                   onChange: file => onFileChange("image", file),
                   onValidationChange: hasError =>

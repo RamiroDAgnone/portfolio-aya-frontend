@@ -44,7 +44,11 @@ export default function CreatePage() {
       graphics: { type: "array" }
     },
     initialData: {
-      image: null,
+      image: {
+        current: null,
+        file: null,
+        remove: false
+      },
       graphics: []
     }
   });

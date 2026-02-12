@@ -24,7 +24,11 @@ export default function EditTeam() {
       image: { type: "single" }
     },
     initialData: {
-      image: null
+      image: {
+        current: null,
+        file: null,
+        remove: false
+      }
     }
   });
 

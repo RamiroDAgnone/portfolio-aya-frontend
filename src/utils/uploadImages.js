@@ -5,6 +5,7 @@ export async function uploadImages({
   concurrency = 2
 }) {
   const taskFns = [];
+  const updates = {};
 
   /* ---------- recorrer fields dinámicamente ---------- */
 
@@ -12,11 +13,22 @@ export async function uploadImages({
     const value = files[field];
 
     // single image
-    if (value instanceof File) {
-      taskFns.push(async () => {
-        const img = await uploadImage(workId, value, field);
-        return { field, img };
-      });
+    if (value && !Array.isArray(value)) {
+
+      // caso eliminar
+      if (value.remove && value.current) {
+        updates[field] = null;
+        continue;
+      }
+
+      // caso upload nuevo
+      if (value.file) {
+        taskFns.push(async () => {
+          const img = await uploadImage(workId, value.file, field);
+          return { field, img };
+        });
+      }
+
       continue;
     }
 
@@ -65,7 +77,6 @@ export async function uploadImages({
 
   // collect uploaded images
   const uploadedByField = {};
-  const updates = {};
 
   for (const r of results) {
     if (!r) continue;

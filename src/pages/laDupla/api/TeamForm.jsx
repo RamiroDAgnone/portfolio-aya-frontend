@@ -134,14 +134,14 @@ export default function TeamForm({
           value={formData.socials.cv}
           onChange={handleChange}
         />
-
+        
         <MediaSection
           singleImages={[
             {
               key: "image",
               title: "Imagen individual",
-              file: files?.image,
-              current: initialData?.image,
+              file: files.image?.file ?? null,
+              current: files.image?.current ?? initialData?.image,
               onChange: file => onImageChange(file),
               onValidationChange: hasError =>
                 registerValidation("image", hasError)
@@ -149,7 +149,7 @@ export default function TeamForm({
           ]}
         />
 
-        <button disabled={loading || hasInvalidImages}>
+        <button disabled={loading || hasInvalidImages} className="form-button">
           {loading ? "Guardando..." : submitText}
         </button>
 

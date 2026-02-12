@@ -22,6 +22,7 @@ export default function EditWork() {
     fileErrors,
     hasInvalidFiles,
     setSingle,
+    toggleSingleRemove,
     imageArrays,
     uploadImage
   } = useImageFiles({
@@ -72,8 +73,16 @@ export default function EditWork() {
         }));
 
       setFiles({
-        cover: work.cover ?? null,
-        logo: work.logo ?? null,
+        cover: {
+          current: work.cover ?? null,
+          file: null,
+          remove: false
+        },
+        logo: {
+          current: work.logo ?? null,
+          file: null,
+          remove: false
+        },
         graphics: wrapBackendArray(work.graphics),
         extraImages: wrapBackendArray(work.extraImages)
       });
@@ -136,6 +145,7 @@ export default function EditWork() {
 
           onChange={handleChange}
           onFileChange={setSingle}
+          onToggleRemoveSingle={toggleSingleRemove}
 
           graphics={imageArrays.graphics}
           extraImages={imageArrays.extraImages}
