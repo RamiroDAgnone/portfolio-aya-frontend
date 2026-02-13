@@ -46,8 +46,8 @@ export default function EditTeam() {
       const imagePayload = {};
 
       // subir imagen nueva si existe
-      if (files.image) {
-        const image = await uploadImage(id, files.image, "image");
+      if (files.image?.file) {
+        const image = await uploadImage(id, files.image.file, "image");
         imagePayload.image = image;
       }
 

@@ -6,19 +6,11 @@
     align-items: center;
     padding: 3rem 1rem;
     gap: 2rem;
-    background-color: #73352F;
     overflow-x: hidden;
-}
-
-/* ---------- Shared Card Style ---------- */
-
-.about-section {
-    background-color: #D7B88A;
-    border: 15px solid #F9ECC9;
-    border-radius: 15px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
-    box-sizing: border-box;
-    overflow: hidden;
+    
+    background: #F9ECC9;
+    background-image: linear-gradient(rgba(115, 53, 47, .7) .1em, transparent .1em), linear-gradient(90deg, rgba(115, 53, 47, .7) .1em, transparent .1em);
+    background-size: 3em 3em;
 }
 
 /* ---------- Dupla Container ---------- */
@@ -72,8 +64,11 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    color: #F9ECC9;
+    color: black;
     z-index: 2;
+    background-color: white;
+    padding: 20px;
+    margin-left: 2rem;
 }
 
 .dupla-desc h1 {
@@ -123,8 +118,8 @@
 
 .us-container {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    flex-direction: row;
+    align-items: stretch;
     gap: 3rem;
     width: 90%;
     box-sizing: border-box;
@@ -135,54 +130,68 @@
 .about-section {
     display: flex;
     align-items: center;
+    flex-direction: column;
+    /*justify-content: space-between;*/
+
     max-width: 900px;
     width: 100%;
     gap: 1rem;
     padding: 20px;
-    flex-direction: row;
+    
+    background-color: #D7B88A;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
+    box-sizing: border-box;
 }
 
-.about-section.left {
-    align-self: flex-start;
-    justify-content: flex-start;
-    text-align: left;
-}
-
-.about-section.right {
-    align-self: flex-end;
-    flex-direction: row-reverse;
-    text-align: right;
-}
-
-.about-section.right .about-list {
-    justify-content: flex-end;
-}
-
-.about-link {
+.about-section-header {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
-    color: #14110E;
-    cursor: pointer;
-    transition: transform 0.2s ease, color 0.2s ease;
+    width: 100%;
+    justify-content: space-evenly;
 }
 
-.about-link:hover {
-    text-decoration: underline;
-    color: #73352F;
+.about-section-header.right{
+    flex-direction: row-reverse;
+    text-align: end;
 }
 
 .about-photo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+    position: relative;
+    width: 220px;
+    height: 220px;
     object-fit: cover;
     border: 3px solid #73352F;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.about-body {
+    flex: 1;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+}
+
+.about-body span{
+    background-color: #73352F;
+    margin-top: 1rem;
+    height: 0.2rem;
 }
 
 .about-text {
-    max-width: 500px;
+    flex: 1;
+    background-color: #F9ECC9;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    text-align: center;
+
+    padding: 2rem;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    z-index: 0;
 }
 
 .about-text h2 {
@@ -202,10 +211,32 @@
     font-size: 1rem;
 }
 
+/* ---------- Contacts ---------- */
+.about-contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    gap: 0.5rem;
+    margin-top: 1rem;
+
+    position: relative;
+}
+
+.about-contacts h3 {
+    font-family: "Faculty Glyphic";
+    color: #73352F;
+    margin: 0;
+}
+
 .about-list {
     display: flex;
     padding: 0;
     gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
 }
 
 .about-list li {
@@ -217,7 +248,7 @@
     align-items: center;
     gap: 0.4rem;
     text-decoration: none;
-    color: #14110E;
+    color: #73352F;
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
@@ -226,10 +257,127 @@
     color: #73352F;
 }
 
+.about-link {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #73352F;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.about-link:hover {
+    text-decoration: underline;
+    color: #73352F;
+}
+/* ---------- Decorations ---------- */
+
+.scrap-base {
+  position: relative;
+}
+
+/* Variables reutilizables */
+.scrap-base {
+  --tape-width: 140px;
+  --tape-height: 28px;
+  --tape-rotate: -6deg;
+  --pin-size: 18px;
+}
+
+.scrap-pin-top::after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--pin-size) / 2);
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--pin-size);
+  height: var(--pin-size);
+  border-radius: 50%;
+
+  background: radial-gradient(circle at 35% 30%,
+    #ffffff 0 18%,
+    #ff6b6b 19% 55%,
+    #c43b3b 56% 100%);
+
+  box-shadow: 0 6px 10px rgba(0,0,0,0.25), inset 0 -2px 4px rgba(0,0,0,0.25);
+  pointer-events: none;
+  z-index: 6;
+}
+
+.scrap-tape-top::after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--tape-height) / 2);
+  left: 50%;
+  transform: translateX(-50%) rotate(var(--tape-rotate));
+  width: var(--tape-width);
+  height: var(--tape-height);
+  border-radius: 6px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,240,0.95) 0%,
+    rgba(240,230,200,0.9) 50%,
+    rgba(255,255,240,0.95) 100%
+  );
+
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  pointer-events: none;
+  z-index: 5;
+}
+.scrap-tape-corners::before,
+.scrap-tape-corners::after {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 24px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(255,255,240,0.95), rgba(240,230,200,0.9));
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.scrap-tape-corners::before {
+  top: -12px;
+  left: -20px;
+  transform: rotate(-12deg);
+}
+
+.scrap-tape-corners::after {
+  top: -12px;
+  right: -20px;
+  transform: rotate(10deg);
+}
+.scrap-tape-under::before {
+  z-index: 0;
+}
+
+.us-container .scrap-tape-top.left{
+  --tape-height: 20px;
+}
+
+.us-container .scrap-tape-top.right{
+  --tape-rotate: 5deg;
+  --tape-width: 120px;
+  --tape-height: 25px;
+}
+
+.about-section-header .scrap-base {
+    margin-bottom: -40px;
+}
+.about-section.left .about-photo {
+    transform: rotate(-6deg);
+}
+
+.about-section.right .about-photo {
+    transform: rotate(5deg);
+}
+
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1000px) {
-
+    
     .dupla-layout {
         grid-template-columns: 1fr;
         grid-template-rows: auto;
@@ -285,6 +433,8 @@
     }
 
     .us-container {
+        flex-direction: column;
+        align-items: center;
         width: 100%;
         gap: 2.5rem;
     }
@@ -314,6 +464,9 @@
     .about-section.right .about-list{
         flex-wrap: wrap;
         justify-content: center;
+    }
+    .about-section-header {
+        gap: 0.5rem;
     }
 
     .about-photo {

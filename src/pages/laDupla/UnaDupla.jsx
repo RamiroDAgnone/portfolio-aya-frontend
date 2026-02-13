@@ -8,24 +8,36 @@ export default function UnaDupla({ name, role, description, image, layout, linke
     const [copied, setCopied] = useState(false);
 
     return (
-        <section className={`about-section ${layout}`}>
-            {image && image.sizes && (
-                <img 
-                    {...getResponsiveImageProps({
-                        image: image,
-                        sizes: "(max-width: 768px) 60vw, 30vw"
-                    })}
-                    alt={name}
-                    className="about-photo"
-                />
-            )}
+        <section className={`about-section ${layout} scrap-base scrap-pin-top`}>
+            <div className={`about-section-header ${layout}`}>
+                <div className={`scrap-base scrap-tape-top ${layout}`}>
                     
-            <div className="about-text">
-                <h2>{name}</h2>
-                <span className="role">{role}</span>
-                {description?.split("\n").map((line, i) => (
-                    <p key={i}>{line}</p>
-                ))}
+                    {image && image.sizes && (
+                        <img 
+                            {...getResponsiveImageProps({
+                                image: image,
+                                sizes: "(max-width: 768px) 60vw, 30vw"
+                            })}
+                            alt={name}
+                            className="about-photo"
+                        />
+                    )}
+                </div>
+                <div className="about-section-header-text">
+                    <h2>{name}</h2>
+                    <span className="role">{role}</span>
+                </div>
+            </div>
+            <div class="about-body">
+                <div className="about-text">
+                    {description?.split("\n").map((line, i) => (
+                        <p key={i}>{line}</p>
+                    ))}
+                </div>
+                <span></span>
+            </div>
+            <div className="about-contacts">
+                <h3>Contacto:</h3>
                 <ul className="about-list">
                     <li>
                         <a href={linkedin} target="_blank" rel="noreferrer" ><FaLinkedinIn /> Linkedin</a>
@@ -50,7 +62,7 @@ export default function UnaDupla({ name, role, description, image, layout, linke
                         </span>
                     </li>
                 </ul>
-             </div>
+            </div>
         </section>
     );
 }

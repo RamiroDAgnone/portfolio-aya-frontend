@@ -120,8 +120,12 @@ export default function EditPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
       });
-
-      navigate(`/${formData.slug}`);
+      if (formData.slug === "home") {
+          navigate("/");
+      }else{
+        navigate(`/${formData.slug}`);
+      }
+      
     } catch (err) {
       console.error("EditPage handleSubmit error:", err);
     } finally {

@@ -35,7 +35,7 @@ export default function LaDupla({ page }) {
     >
       <div className="dupla-container">
         <div className="dupla-layout">
-          <div className="dupla-desc">
+          <div className="dupla-desc scrap-base scrap-tape-corners">
             <h1>{page.title}</h1>
             {page.description?.split("\n").map((line, i) => (
                 <p key={i}>{line}</p>
