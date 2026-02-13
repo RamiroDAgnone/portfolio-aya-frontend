@@ -6,6 +6,7 @@ import Lightbox from "../../components/lightbox/Lightbox";
 import UnaDupla from "./UnaDupla";
 
 import "./LaDupla.css";
+import "../../components/css/Scrapbook.css"
 
 let teamCache = null;
 
@@ -29,9 +30,11 @@ export default function LaDupla({ page }) {
   }, []);
 
   return (
-    <div
-      className="about-container"
-      style={{ backgroundColor: page.backgroundColor }}
+    <div className="about-container" 
+      style= {{ 
+        "--bg-color": page.backgroundColor, 
+        "--line-color": page.linesColor?.length === 7 ? page.linesColor + "B3" : page.linesColor
+      }} 
     >
       <div className="dupla-container">
         <div className="dupla-layout">
@@ -76,9 +79,10 @@ export default function LaDupla({ page }) {
 
       <div className="us-container">
         {dupla
-          .map(d => (
+          .map((d, index) => (
             <UnaDupla
               key={d.id}
+              index={index}
               name={d.name}
               role={d.role}
               description={d.description}

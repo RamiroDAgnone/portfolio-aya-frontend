@@ -2,15 +2,20 @@ import { getResponsiveImageProps } from "../../utils/imageVariants";
 import { FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { IoMdBookmarks, IoIosMail, IoIosMailOpen } from "react-icons/io";
 import { useState } from "react";
+
+import { getScrapPinVariant, getScrapTapeVariant } from "../../utils/getScrapVariant";
+
 import "./LaDupla.css";
 
-export default function UnaDupla({ name, role, description, image, layout, linkedin, instagram, cv, email }) {
+export default function UnaDupla({ index, name, role, description, image, layout, linkedin, instagram, cv, email }) {
     const [copied, setCopied] = useState(false);
+    const pinClass = getScrapPinVariant(index);
+    const tapeClass = getScrapTapeVariant(index);
 
     return (
-        <section className={`about-section ${layout} scrap-base scrap-pin-top`}>
+        <section className={`about-section ${layout} scrap-base scrap-pin-top ${pinClass} `}>
             <div className={`about-section-header ${layout}`}>
-                <div className={`scrap-base scrap-tape-top ${layout}`}>
+                <div className={`scrap-base scrap-tape-top ${layout} ${tapeClass}`}>
                     
                     {image && image.sizes && (
                         <img 
@@ -28,7 +33,7 @@ export default function UnaDupla({ name, role, description, image, layout, linke
                     <span className="role">{role}</span>
                 </div>
             </div>
-            <div class="about-body">
+            <div className="about-body">
                 <div className="about-text">
                     {description?.split("\n").map((line, i) => (
                         <p key={i}>{line}</p>

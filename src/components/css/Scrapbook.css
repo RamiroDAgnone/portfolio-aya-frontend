@@ -1,0 +1,193 @@
+/* ---------- BASE ---------- */
+
+.scrap-base {
+  position: relative;
+
+  --tape-width: 140px;
+  --tape-height: 28px;
+  --tape-rotate: -6deg;
+  --tape-radius: 6px;
+
+  --tape-color-light: rgba(255,255,240,0.95);
+  --tape-color-mid: rgba(240,230,200,0.9);
+
+  --tape-texture:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.04) 0px,
+      rgba(255,255,255,0.04) 2px,
+      rgba(0,0,0,0.03) 3px,
+      rgba(0,0,0,0.03) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,0.03) 0px,
+      rgba(0,0,0,0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    linear-gradient(
+      90deg,
+      var(--tape-color-light) 0%,
+      var(--tape-color-mid) 50%,
+      var(--tape-color-light) 100%
+    );
+
+  --tape-shadow: 
+    0 6px 12px rgba(0,0,0,0.25),
+    inset 0 1px 2px rgba(255,255,255,0.3),
+    inset 0 -2px 4px rgba(0,0,0,0.2);
+}
+
+/* Variables reutilizables */
+.scrap-base {
+  --pin-size: 24px;
+
+  --tape-width: 140px;
+  --tape-height: 28px;
+  --tape-rotate: -6deg;
+  --tape-radius: 6px;
+
+  --tape-color-light: rgba(255,255,240,0.95);
+  --tape-color-mid: rgba(240,230,200,0.9);
+}
+
+/* ---------- PIN ---------- */
+.scrap-pin-top::after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--pin-size) / 2);
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--pin-size);
+  height: var(--pin-size);
+  border-radius: 50%;
+
+  background: radial-gradient(circle at 35% 30%,
+    #ffffff 0 18%,
+    var(--pin-color-light) 19% 55%,
+    var(--pin-color-dark) 56% 100%
+  );
+
+  box-shadow:
+    0 6px 10px rgba(0,0,0,0.25),
+    inset 0 -2px 4px rgba(0,0,0,0.25);
+
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* ---------- PIN VARIANTS ---------- */
+
+.scrap-pin-red {
+  --pin-color-light: #ff6b6b;
+  --pin-color-dark: #c43b3b;
+}
+
+.scrap-pin-blue {
+  --pin-color-light: #6bb7ff;
+  --pin-color-dark: #2e6fb3;
+}
+
+.scrap-pin-green {
+  --pin-color-light: #6bff9b;
+  --pin-color-dark: #2f8a55;
+}
+
+.scrap-pin-yellow {
+  --pin-color-light: #ffe66b;
+  --pin-color-dark: #b39a2e;
+}
+
+.scrap-pin-purple {
+  --pin-color-light: #c56bff;
+  --pin-color-dark: #7a2eb3;
+}
+
+.scrap-pin-black {
+  --pin-color-light: #666;
+  --pin-color-dark: #111;
+}
+
+/* ---------- TAPES ---------- */
+
+.scrap-tape-top::after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--tape-height) / 2);
+  left: 50%;
+  transform: translateX(-50%) rotate(var(--tape-rotate));
+  width: var(--tape-width);
+  height: var(--tape-height);
+  border-radius: var(--tape-radius, 6px);
+
+  background: var(--tape-texture);
+
+  box-shadow: var(--tape-shadow);
+
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ---------- TAPE VARIANTS ---------- */
+
+.scrap-tape-cream {
+  --tape-color-light: rgba(255,255,240,0.95);
+  --tape-color-mid: rgba(240,230,200,0.9);
+}
+
+.scrap-tape-pink {
+  --tape-color-light: rgba(255,220,230,0.95);
+  --tape-color-mid: rgba(240,170,190,0.85);
+}
+
+.scrap-tape-blue {
+  --tape-color-light: rgba(220,235,255,0.95);
+  --tape-color-mid: rgba(170,200,240,0.85);
+}
+
+.scrap-tape-green {
+  --tape-color-light: rgba(220,255,230,0.95);
+  --tape-color-mid: rgba(170,220,190,0.85);
+}
+
+.scrap-tape-yellow {
+  --tape-color-light: rgba(255,250,210,0.95);
+  --tape-color-mid: rgba(240,220,150,0.85);
+}
+
+.scrap-tape-gray {
+  --tape-color-light: rgba(240,240,240,0.95);
+  --tape-color-mid: rgba(200,200,200,0.85);
+}
+
+.scrap-tape-corners::before,
+.scrap-tape-corners::after {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 24px;
+  border-radius: 6px;
+
+  background: var(--tape-texture);
+
+  box-shadow: var(--tape-shadow);
+
+  pointer-events: none;
+  z-index: 5;
+}
+
+.scrap-tape-corners::before {
+  top: -12px;
+  left: -20px;
+  transform: rotate(-12deg);
+}
+
+.scrap-tape-corners::after {
+  top: -12px;
+  right: -20px;
+  transform: rotate(10deg);
+}
+.scrap-tape-under::before {
+  z-index: 0;
+}

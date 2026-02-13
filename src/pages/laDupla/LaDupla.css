@@ -7,9 +7,11 @@
     padding: 3rem 1rem;
     gap: 2rem;
     overflow-x: hidden;
-    
-    background: #F9ECC9;
-    background-image: linear-gradient(rgba(115, 53, 47, .7) .1em, transparent .1em), linear-gradient(90deg, rgba(115, 53, 47, .7) .1em, transparent .1em);
+
+    background-color: var(--bg-color);
+    background-image:
+        linear-gradient(var(--line-color) .1em, transparent 1px),
+        linear-gradient(90deg, var(--line-color) .1em, transparent 1px);
     background-size: 3em 3em;
 }
 
@@ -131,7 +133,6 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    /*justify-content: space-between;*/
 
     max-width: 900px;
     width: 100%;
@@ -270,88 +271,8 @@
     text-decoration: underline;
     color: #73352F;
 }
-/* ---------- Decorations ---------- */
 
-.scrap-base {
-  position: relative;
-}
-
-/* Variables reutilizables */
-.scrap-base {
-  --tape-width: 140px;
-  --tape-height: 28px;
-  --tape-rotate: -6deg;
-  --pin-size: 18px;
-}
-
-.scrap-pin-top::after {
-  content: "";
-  position: absolute;
-  top: calc(-1 * var(--pin-size) / 2);
-  left: 50%;
-  transform: translateX(-50%);
-  width: var(--pin-size);
-  height: var(--pin-size);
-  border-radius: 50%;
-
-  background: radial-gradient(circle at 35% 30%,
-    #ffffff 0 18%,
-    #ff6b6b 19% 55%,
-    #c43b3b 56% 100%);
-
-  box-shadow: 0 6px 10px rgba(0,0,0,0.25), inset 0 -2px 4px rgba(0,0,0,0.25);
-  pointer-events: none;
-  z-index: 6;
-}
-
-.scrap-tape-top::after {
-  content: "";
-  position: absolute;
-  top: calc(-1 * var(--tape-height) / 2);
-  left: 50%;
-  transform: translateX(-50%) rotate(var(--tape-rotate));
-  width: var(--tape-width);
-  height: var(--tape-height);
-  border-radius: 6px;
-
-  background: linear-gradient(
-    90deg,
-    rgba(255,255,240,0.95) 0%,
-    rgba(240,230,200,0.9) 50%,
-    rgba(255,255,240,0.95) 100%
-  );
-
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-  pointer-events: none;
-  z-index: 5;
-}
-.scrap-tape-corners::before,
-.scrap-tape-corners::after {
-  content: "";
-  position: absolute;
-  width: 90px;
-  height: 24px;
-  border-radius: 6px;
-  background: linear-gradient(90deg, rgba(255,255,240,0.95), rgba(240,230,200,0.9));
-  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
-  pointer-events: none;
-  z-index: 5;
-}
-
-.scrap-tape-corners::before {
-  top: -12px;
-  left: -20px;
-  transform: rotate(-12deg);
-}
-
-.scrap-tape-corners::after {
-  top: -12px;
-  right: -20px;
-  transform: rotate(10deg);
-}
-.scrap-tape-under::before {
-  z-index: 0;
-}
+/* ---------- Scrapbook ---------- */
 
 .us-container .scrap-tape-top.left{
   --tape-height: 20px;
@@ -375,7 +296,6 @@
 }
 
 /* ---------- Responsive ---------- */
-
 @media (max-width: 1000px) {
     
     .dupla-layout {
@@ -465,8 +385,13 @@
         flex-wrap: wrap;
         justify-content: center;
     }
+
     .about-section-header {
         gap: 0.5rem;
+    }
+    
+    .about-section-header.right{
+        text-align: center;
     }
 
     .about-photo {

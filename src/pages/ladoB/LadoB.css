@@ -4,7 +4,12 @@
   min-height: 100vh;
   padding-bottom: 40px;
   box-sizing: border-box;
-  background-color: #73352F;
+
+  background-color: var(--bg-color);
+  background-image:
+      linear-gradient(var(--line-color) .1em, transparent 1px),
+      linear-gradient(90deg, var(--line-color) .1em, transparent 1px);
+  background-size: 3em 3em;
 }
 
 .ladoB-header {
@@ -41,20 +46,36 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 40px;
+  gap: 60px;
 }
 
 /* ---------- PROJECT CARD ---------- */
 .proyectoB {
+  width: 80%;
+  margin: 0 2rem;
+}
+
+.proyectoB-visual {
   display: flex;
   align-items: stretch;
-  width: 80%;
   padding: 20px;
-  background-color: #D7B88A;
-  border: 15px solid #F9ECC9;
-  border-radius: 15px;
+  background-color: #F9ECC9;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
-  margin: 0 2rem;
+
+  transform: rotate(1.5deg);
+  transform-origin: top left;
+}
+
+.proyectoB.proyectoB-reverse .proyectoB-visual {
+  flex-direction: row-reverse;
+  text-align: end;
+
+  transform: rotate(-1.5deg);
+  transform-origin: top right;
+}
+
+.ladoB-projects > .proyectoB:last-child {
+  margin-bottom: 60px;
 }
 
 /* ---------- IMAGE ---------- */
@@ -68,7 +89,6 @@
 .proyectoB-imageInner {
   display: flex;
   width: 100%;
-  overflow: hidden;
 }
 
 .proyectoB-imageInner img {
@@ -77,6 +97,14 @@
   object-fit: cover;
   display: block;
   cursor: pointer;
+}
+
+.proyectoB-divider {
+  width: 0.2rem;
+  background: rgba(0, 0, 0, 0.7);
+
+  margin: 0 20px;
+  border-radius: 2px;
 }
 
 /* ---------- CONTENT ---------- */
@@ -89,19 +117,59 @@
   justify-content: center;
 }
 
-.proyectoB-content span {
-  font-family: "Monserrat-Bold";
-}
-
 .proyectoB-title {
   font-family: "Faculty Glyphic";
   font-size: 24px;
   margin-bottom: 16px;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding-bottom: 8px;
+}
+
+.proyectoB-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.proyectoB-content span {
+  font-family: "Monserrat-Bold";
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+}
+
+.proyectoB-content span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 1.5px;
+  background: rgba(0, 0, 0, 0.7);
 }
 
 .proyectoB-text {
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.8;
+  padding: 4px 0;
+
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent calc(1.8em - 2px),
+    rgba(0, 0, 0, 0.25) calc(1.8em - 2px),
+    rgba(0, 0, 0, 0.25) 1.8em
+  );
 }
 
 /* ---------- REVERSE ---------- */
@@ -109,7 +177,89 @@
   flex-direction: row-reverse;
   text-align: end;
   align-self: flex-end;
+  
+  transform: rotate(-1.5deg);
+  transform-origin: top right;
 }
+/* ---------- OVERLAY ---------- */
+
+.proyectoB-imgWrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.proyectoB-imgWrap img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: filter 0.4s ease, transform 0.4s ease;
+}
+
+.proyectoB-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.4);
+
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+
+  cursor: pointer;
+  text-align: center;
+}
+
+.proyectoB-overlay h4 {
+  font-family: "Faculty Glyphic";
+  font-size: 1.4rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.proyectoB-overlay span {
+  font-family: "Monserrat-Bold";
+  font-size: 1rem;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .proyectoB-imgWrap:hover img {
+    filter: blur(3px);
+    transform: scale(1.05);
+  }
+
+  .proyectoB-imgWrap:hover .proyectoB-overlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .proyectoB-overlay {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  .proyectoB-overlay.active-mobile {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ---------- SCRAPBOOK ---------- */
+
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 768px) {
@@ -118,18 +268,30 @@
     width: 90%;
     font-size: 15px;
   }
+  
+  .proyectoB, .proyectoB.proyectoB-reverse {
+    transform: none;
+    transform-origin: initial;
+    margin: 0 auto;
+  }
 
-  .proyectoB,
-  .proyectoB.proyectoB-reverse {
+  .proyectoB-visual {
     flex-direction: column;
-    width: 80%;
-    padding: 12px;
-    border-width: 10px;
-    align-self: center;
+    transform: none;
+    transform-origin: initial;
+    padding: 16px;
+  }
+  .proyectoB.proyectoB-reverse .proyectoB-visual {
+    flex-direction: column;
+    transform: none;
   }
 
   .proyectoB-image {
     width: 100%;
+  }
+
+  .proyectoB-divider {
+    display: none;
   }
 
   .proyectoB-content {
@@ -145,6 +307,14 @@
 
   .proyectoB-text {
     font-size: 15px;
-    line-height: 1.5;
+    line-height: 1.6;
+
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(1.6em - 2px),
+      rgba(0, 0, 0, 0.2) calc(1.6em - 2px),
+      rgba(0, 0, 0, 0.2) 1.6em
+    );
   }
 }

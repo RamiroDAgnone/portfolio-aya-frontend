@@ -1,5 +1,6 @@
 import MediaSection from "../../../components/forms/MediaSection";
 import { useImageValidation } from "../../../utils/useImageValidation";
+import ColorField from "../../../components/forms/ColorField";
 
 import "./WorkApi.css";
 
@@ -75,25 +76,12 @@ export default function WorkForm({
         <option value="archived">Archivado</option>
       </select>
       
-      <h3>Color de fondo</h3>
-      <div className="color-row">
-        <label className="color-square">
-          <input
-            type="color"
-            name="backgroundColor"
-            value={formData.backgroundColor || "#ffffff"}
-            onChange={onChange}
-          />
-        </label>
-        <label className="color-hex">
-          <input
-            type="text"
-            name="backgroundColor"
-            value={formData.backgroundColor || "#ffffff"}
-            onChange={onChange}
-          />
-        </label>
-      </div>
+      <ColorField
+        label="Color de fondo"
+        name="backgroundColor"
+        value={formData.backgroundColor}
+        onChange={onChange}
+      />
 
       <MediaSection
         singleImages={[

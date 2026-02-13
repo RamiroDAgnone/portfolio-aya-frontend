@@ -151,8 +151,11 @@ export default function ImageSortableArrayList({
   onToggleRemove,
   onAdd,
   onReorder,
-  onValidationChange
+  onValidationChange,
+  maxItems
 }) {
+  const maxReached = maxItems !== undefined && items.length >= maxItems;
+
   return (
     <div className="image-list">
       <h3>{title}</h3>
@@ -183,8 +186,15 @@ export default function ImageSortableArrayList({
         </SortableContext>
       </DndContext>
 
-      <button type="button" onClick={onAdd} className="add-button">
-        + Agregar
+      <button
+        type="button"
+        onClick={onAdd}
+        className="add-button"
+        disabled={maxReached}
+      >
+        {maxReached
+          ? `Máximo ${maxItems} imágenes`
+          : "+ Agregar"}
       </button>
     </div>
   );

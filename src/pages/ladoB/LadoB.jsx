@@ -5,6 +5,7 @@ import { getResponsiveImageProps } from "../../utils/imageVariants";
 import ProyectoB from "./ProyectoB.jsx";
 
 import "./LadoB.css";
+import "../../components/css/Scrapbook.css"
 
 let bProjectsCache = null;
 
@@ -28,9 +29,13 @@ export default function LadoB({ page }) {
       );
   }, []);
 
-
   return (
-    <section className="ladoB"  style={{ backgroundColor: page.backgroundColor }}>
+    <section className="ladoB"  
+      style= {{ 
+        "--bg-color": page.backgroundColor, 
+        "--line-color": page.linesColor?.length === 7 ? page.linesColor + "B3" : page.linesColor
+      }}
+    >
       <header className="ladoB-header">
         {page.image && page.image.sizes && (() => {
           const baseSize =
@@ -66,11 +71,13 @@ export default function LadoB({ page }) {
         {projects.map((project, index) => (
           <ProyectoB
             key={project.id}
+            index={index}
             title={project.title}
             description={project.description}
             graphics={project.graphics || []}
             author={project.author}
             reverse={index % 2 !== 0}
+            pinVariant={index % 6}
           />
         ))}
       </div>

@@ -1,5 +1,6 @@
 import MediaSection from "../../../components/forms/MediaSection";
 import { useImageValidation } from "../../../utils/useImageValidation";
+import ColorField from "../../../components/forms/ColorField";
 
 import { PAGE_RULES } from "../../../utils/previews/pageRules";
 import "../../works/api/WorkApi.css";
@@ -13,7 +14,7 @@ export default function PageForm({
   hasInvalidFiles,
   onChange,
   onFileChange,
- onToggleRemoveSingle,
+  onToggleRemoveSingle,
 
   graphics,
 
@@ -71,25 +72,20 @@ export default function PageForm({
         <option value="archived">Archivado</option>
       </select>
 
-      <h3>Color de fondo</h3>
-      <div className="color-row">
-        <label className="color-square">
-          <input
-            type="color"
-            name="backgroundColor"
-            value={formData.backgroundColor || "#ffffff"}
-            onChange={onChange}
-          />
-        </label>
-        <label className="color-hex">
-          <input
-            type="text"
-            name="backgroundColor"
-            value={formData.backgroundColor || "#ffffff"}
-            onChange={onChange}
-          />
-        </label>
-      </div>
+      <ColorField
+        label="Color de fondo"
+        name="backgroundColor"
+        value={formData.backgroundColor}
+        onChange={onChange}
+      />
+
+      <ColorField
+        label="Color de líneas (Para sin lineas dejar el mismo que el del fondo)"
+        name="linesColor"
+        value={formData.linesColor}
+        onChange={onChange}
+        defaultColor="#000000"
+      />
 
       <MediaSection
         singleImages={
@@ -118,6 +114,7 @@ export default function PageForm({
                   items: files.graphics,
                   controls: {
                     ...graphics,
+                    maxItems: rules.maxGraphics,
                     onValidationChange: registerValidation
                   }
                 }

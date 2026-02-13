@@ -7,7 +7,8 @@ export const PAGE_RULES = {
     "la-dupla": {
         singleImage: false,
         gallery: true,
-        videos: false
+        videos: false,
+        maxGraphics: 5
     },
     "lado-b": {
         singleImage: true,
@@ -22,6 +23,7 @@ export const PAGE_RULES = {
     default: {
         singleImage: true,
         gallery: true,
-        videos: true
+        videos: true,
+        maxGraphics: Infinity
     }
 };
