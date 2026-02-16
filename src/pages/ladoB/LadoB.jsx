@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../../auth/constants";
 import { getResponsiveImageProps } from "../../utils/imageVariants";
+import { getDecorations } from "../../services/decorationsService";
 
 import ProyectoB from "./ProyectoB.jsx";
 
@@ -14,31 +15,30 @@ export default function LadoB({ page }) {
   const [decorationsData, setDecorationsData] = useState([]);
 
   useEffect(() => {
-    if (bProjectsCache) {
-      setProjects(bProjectsCache);
-      return;
-    }
+    const loadData = async () => {
+      try {
+        if (bProjectsCache) {
+          setProjects(bProjectsCache);
+        } else {
+          const res = await fetch(`${API_URL}/bprojects`);
+          const data = await res.json();
+          bProjectsCache = data;
+          setProjects(data);
+        }
 
-    fetch(`${API_URL}/bprojects`)
-      .then(res => res.json())
-      .then(data => {
-        bProjectsCache = data;
-        setProjects(data);
-      })
-      .catch(err =>
-        console.error("Error cargando Lado B:", err)
-      );
-  }, []);
+        const decorations = await getDecorations();
+        setDecorationsData(decorations);
 
-  useEffect(() => {
-    fetch(`${API_URL}/decorations`)
-      .then(res => res.json())
-      .then(setDecorationsData)
-      .catch(console.error);
+      } catch (err) {
+        console.error("Error cargando Lado B:", err);
+      }
+    };
+
+    loadData();
   }, []);
 
   return (
-    <section className="ladoB"  
+    <section className="ladoB"
       style= {{ 
         "--bg-color": page.backgroundColor, 
         "--line-color": page.linesColor?.length === 7 ? page.linesColor + "B3" : page.linesColor
@@ -79,7 +79,6 @@ export default function LadoB({ page }) {
         {projects.map((project, index) => (
           <ProyectoB
             key={project.id}
-            index={index}
             title={project.title}
             description={project.description}
             graphics={project.graphics || []}

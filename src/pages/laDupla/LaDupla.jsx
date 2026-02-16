@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { API_URL } from "../../auth/constants";
 import { getResponsiveImageProps } from "../../utils/imageVariants";
 import { getScrapDecoration } from "../../utils/getScrapDecoration";
+import { getDecorations } from "../../services/decorationsService";
 
 import Lightbox from "../../components/lightbox/Lightbox";
 import UnaDupla from "./UnaDupla";
@@ -36,8 +37,7 @@ export default function LaDupla({ page }) {
   }, []);
 
   useEffect(() => {
-    fetch(`${API_URL}/decorations`)
-      .then(res => res.json())
+    getDecorations()
       .then(setDecorationsData)
       .catch(console.error);
   }, []);

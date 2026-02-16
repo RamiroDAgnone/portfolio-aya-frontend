@@ -6,7 +6,6 @@ import Lightbox from "../../components/lightbox/Lightbox";
 
 export default function ProyectoB({
   title,
-  index,
   author,
   description,
   graphics = [],
