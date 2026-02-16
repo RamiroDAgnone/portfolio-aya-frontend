@@ -1,4 +1,5 @@
 import MediaSection from "../../../components/forms/MediaSection";
+import DecorationField from "../../../components/forms/DecorationField";
 import { useImageValidation } from "../../../utils/useImageValidation";
 
 import "../../works/api/WorkApi.css";
@@ -70,6 +71,18 @@ export default function BProjectForm({
         <option value="published">Publicado</option>
         <option value="archived">Archivado</option>
       </select>
+      
+      <DecorationField
+        value={formData.decorations || []}
+        onChange={decorations =>
+          onChange({
+            target: {
+              name: "decorations",
+              value: decorations
+            }
+          })
+        }
+      />
 
       <MediaSection
         imageArrays={[

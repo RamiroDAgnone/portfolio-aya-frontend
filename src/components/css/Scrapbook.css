@@ -2,14 +2,15 @@
 
 .scrap-base {
   position: relative;
+  --pin-size: 24px;
 
   --tape-width: 140px;
   --tape-height: 28px;
   --tape-rotate: -6deg;
   --tape-radius: 6px;
 
-  --tape-color-light: rgba(255,255,240,0.95);
-  --tape-color-mid: rgba(240,230,200,0.9);
+  --color-light: #ffffff;
+  --color-dark: #000000;
 
   --tape-texture:
     repeating-linear-gradient(
@@ -28,9 +29,9 @@
     ),
     linear-gradient(
       90deg,
-      var(--tape-color-light) 0%,
-      var(--tape-color-mid) 50%,
-      var(--tape-color-light) 100%
+      var(--color-light) 0%,
+      var(--color-dark) 50%,
+      var(--color-light) 100%
     );
 
   --tape-shadow: 
@@ -39,74 +40,102 @@
     inset 0 -2px 4px rgba(0,0,0,0.2);
 }
 
-/* Variables reutilizables */
-.scrap-base {
-  --pin-size: 24px;
+/* ---------- PIN ---------- */
 
-  --tape-width: 140px;
-  --tape-height: 28px;
-  --tape-rotate: -6deg;
-  --tape-radius: 6px;
+[class*="scrap-pin-"]::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--pin-size) / 2 + 5px);
+  left: 50%;
+  transform: translateX(-50%);
 
-  --tape-color-light: rgba(255,255,240,0.95);
-  --tape-color-mid: rgba(240,230,200,0.9);
+  width: var(--pin-size);
+  height: var(--pin-size);
+
+  background: rgba(0,0,0,0.5);
+  filter: blur(6px);
+  opacity: 0.45;
+
 }
 
-/* ---------- PIN ---------- */
-.scrap-pin-top::after {
+[class*="scrap-pin-"]::after {
   content: "";
   position: absolute;
   top: calc(-1 * var(--pin-size) / 2);
   left: 50%;
   transform: translateX(-50%);
+
   width: var(--pin-size);
   height: var(--pin-size);
-  border-radius: 50%;
 
-  background: radial-gradient(circle at 35% 30%,
-    #ffffff 0 18%,
-    var(--pin-color-light) 19% 55%,
-    var(--pin-color-dark) 56% 100%
-  );
+  background:
+    radial-gradient(circle at 30% 28%,
+      rgba(255,255,255,0.95) 0 18%,
+      rgba(255,255,255,0.35) 25%,
+      transparent 55%
+    ),
+    radial-gradient(circle at 50% 60%,
+      var(--color-light) 0%,
+      var(--color-dark) 85%
+    );
 
+  border: 1px solid rgba(255,255,255,0.25);
   box-shadow:
-    0 6px 10px rgba(0,0,0,0.25),
-    inset 0 -2px 4px rgba(0,0,0,0.25);
+    0 10px 14px rgba(0,0,0,0.35),
+    inset 0 2px 3px rgba(255,255,255,0.35),
+    inset 0 -6px 10px rgba(0,0,0,0.45);
 
   pointer-events: none;
   z-index: 6;
 }
 
-/* ---------- PIN VARIANTS ---------- */
-
-.scrap-pin-red {
-  --pin-color-light: #ff6b6b;
-  --pin-color-dark: #c43b3b;
+.scrap-pin-circle::after {
+  border-radius: 50%;
+  
 }
 
-.scrap-pin-blue {
-  --pin-color-light: #6bb7ff;
-  --pin-color-dark: #2e6fb3;
+.scrap-pin-heart::after {
+  clip-path: path("M12 21s-6.5-4.35-10-9.28C-1.5 7.2 1.42 2 6 2c2.54 0 4 2 6 4 2-2 3.46-4 6-4 4.58 0 7.5 5.2 4 9.72C18.5 16.65 12 21 12 21z");  
+  background:
+    radial-gradient(circle at 20% 20%,
+      rgba(255,255,255,0.9) 0 10%,
+      rgba(255,255,255,0.4) 9%,
+      transparent 35%
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-light) 0%,
+      var(--color-light) 35%,
+      var(--color-dark) 100%
+    );
 }
 
-.scrap-pin-green {
-  --pin-color-light: #6bff9b;
-  --pin-color-dark: #2f8a55;
-}
+.scrap-pin-star::after {
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
 
-.scrap-pin-yellow {
-  --pin-color-light: #ffe66b;
-  --pin-color-dark: #b39a2e;
-}
-
-.scrap-pin-purple {
-  --pin-color-light: #c56bff;
-  --pin-color-dark: #7a2eb3;
-}
-
-.scrap-pin-black {
-  --pin-color-light: #666;
-  --pin-color-dark: #111;
+  background:
+    radial-gradient(circle at 25% 30%,
+      rgba(255,255,255,0.9) 0 6%,
+      rgba(255,255,255,0.4) 8%,
+      transparent 30%
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-light) 0%,
+      var(--color-light) 30%,
+      var(--color-dark) 100%
+    );
 }
 
 /* ---------- TAPES ---------- */
@@ -119,46 +148,13 @@
   transform: translateX(-50%) rotate(var(--tape-rotate));
   width: var(--tape-width);
   height: var(--tape-height);
-  border-radius: var(--tape-radius, 6px);
+  border-radius: var(--tape-radius);
 
   background: var(--tape-texture);
-
   box-shadow: var(--tape-shadow);
 
   pointer-events: none;
   z-index: 5;
-}
-
-/* ---------- TAPE VARIANTS ---------- */
-
-.scrap-tape-cream {
-  --tape-color-light: rgba(255,255,240,0.95);
-  --tape-color-mid: rgba(240,230,200,0.9);
-}
-
-.scrap-tape-pink {
-  --tape-color-light: rgba(255,220,230,0.95);
-  --tape-color-mid: rgba(240,170,190,0.85);
-}
-
-.scrap-tape-blue {
-  --tape-color-light: rgba(220,235,255,0.95);
-  --tape-color-mid: rgba(170,200,240,0.85);
-}
-
-.scrap-tape-green {
-  --tape-color-light: rgba(220,255,230,0.95);
-  --tape-color-mid: rgba(170,220,190,0.85);
-}
-
-.scrap-tape-yellow {
-  --tape-color-light: rgba(255,250,210,0.95);
-  --tape-color-mid: rgba(240,220,150,0.85);
-}
-
-.scrap-tape-gray {
-  --tape-color-light: rgba(240,240,240,0.95);
-  --tape-color-mid: rgba(200,200,200,0.85);
 }
 
 .scrap-tape-corners::before,
@@ -170,7 +166,6 @@
   border-radius: 6px;
 
   background: var(--tape-texture);
-
   box-shadow: var(--tape-shadow);
 
   pointer-events: none;
@@ -188,6 +183,43 @@
   right: -20px;
   transform: rotate(10deg);
 }
-.scrap-tape-under::before {
-  z-index: 0;
+
+/* ---------- PREVIEW ---------- */
+
+.decoration-preview-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  justify-content: space-around;
+}
+
+.decoration-preview-name{
+  margin-bottom: 2rem;
+}
+
+.decoration-preview-item {
+  width: 160px;
+  text-align: center;
+}
+
+.decoration-preview-box {
+  position: relative;
+  width: 160px;
+  height: 70px;
+  border: 1px dashed #333;
+  border-radius: 8px;
+  background: #f9ecc9;
+}
+
+.preview-label {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+.decoration-preview-class {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin-top: 0.4rem;
 }

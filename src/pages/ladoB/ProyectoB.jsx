@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getResponsiveImageProps } from "../../utils/imageVariants";
-import { getScrapPinVariant, getScrapTapeVariant } from "../../utils/getScrapVariant";
+import { getScrapDecoration } from "../../utils/getScrapDecoration";
 
 import Lightbox from "../../components/lightbox/Lightbox";
 
@@ -10,6 +10,8 @@ export default function ProyectoB({
   author,
   description,
   graphics = [],
+  decorations = [], 
+  decorationsData = [],
   reverse = false,
 }) {
   const [lightboxData, setLightboxData] = useState(null);
@@ -20,15 +22,15 @@ export default function ProyectoB({
     autor2: "Agustina Lubris"
   };
 
-  const pinClass = getScrapPinVariant(index);
-  const tapeClass = getScrapTapeVariant(index);
+  const pin = getScrapDecoration(decorationsData, decorations, "pin");
+  const tape = getScrapDecoration(decorationsData, decorations, "tape");
 
   const mainImage = graphics[0];
 
   return (
     <>
       <article className={`proyectoB ${reverse ? "proyectoB-reverse" : ""} `}>
-        <div className={`proyectoB-visual scrap-base scrap-pin-top ${pinClass}`}>
+        <div className={`proyectoB-visual scrap-base ${pin?.className || ""} `}  style={pin?.style}>
           <div className="proyectoB-image">
             <div className="proyectoB-imageInner">
               {mainImage && mainImage.sizes && (() => {
@@ -36,7 +38,7 @@ export default function ProyectoB({
                   mainImage.sizes?.[600] || Object.values(mainImage.sizes)[0];
 
                 return (
-                  <div className={`scrap-base scrap-tape-corners ${tapeClass}`}>
+                  <div className={`scrap-base ${tape?.className || ""}`}  style={tape?.style}>
                     <div className={` proyectoB-imgWrap`}>
                       <img
                         {...getResponsiveImageProps({

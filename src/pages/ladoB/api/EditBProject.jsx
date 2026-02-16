@@ -62,7 +62,8 @@ export default function EditBProject() {
       title: project.title,
       description: project.description,
       author: project.author,
-      visibility: project.visibility ?? true
+      visibility: project.visibility ?? true,
+      decorations: project.decorations || []
     });
 
     setAllVideos(
@@ -84,8 +85,14 @@ export default function EditBProject() {
     }));
   };
 
-  const handleChange = (e) =>
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -106,6 +113,7 @@ export default function EditBProject() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
+          decorations: formData.decorations,
           graphics: uploads.graphics || [],
           videos
         })

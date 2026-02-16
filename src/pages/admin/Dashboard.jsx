@@ -96,18 +96,18 @@ const Dashboard = () => {
         <section className="dashboard-section">
           <h3>Trabajos</h3>
           <ul>
-            <li><Link to="/admin/works">Ver todos</Link></li>
-            <li><Link to="/admin/work/create">Crear</Link></li>
-            <li><Link to="/admin/work/reorder">Reordenar</Link></li>
+            <li><Link to="/admin/works">Ver todos los trabajos</Link></li>
+            <li><Link to="/admin/work/create">Crear un nuevo trabajo</Link></li>
+            <li><Link to="/admin/work/reorder">Reordenar trabajos</Link></li>
           </ul>
         </section>
 
         <section className="dashboard-section">
           <h3>Lado B</h3>
           <ul>
-            <li><Link to="/admin/b/create">Crear</Link></li>
-            <li><Link to="/admin/b/edit">Editar</Link></li>
-            <li><Link to="/admin/b/reorder">Reordenar</Link></li>
+            <li><Link to="/admin/b/create">Crear un proyecto del lado B</Link></li>
+            <li><Link to="/admin/b/edit">Editar un proyecto del lado B</Link></li>
+            <li><Link to="/admin/b/reorder">Reordenar proyectos</Link></li>
           </ul>
         </section>
 
@@ -116,12 +116,12 @@ const Dashboard = () => {
           <ul>
             <li>
               <Link to="/admin/team/edit/696548f9c67b108b21b7e176">
-                Editar Agus
+                Editar perfil de Agus
               </Link>
             </li>
             <li>
               <Link to="/admin/team/edit/696549bfc67b108b21b7e186">
-                Editar Ana
+                Editar perfil de Ana
               </Link>
             </li>
           </ul>
@@ -130,8 +130,9 @@ const Dashboard = () => {
         <section className="dashboard-section">
           <h3>Páginas</h3>
           <ul>
-            <li><Link to="/admin/page/create">Crear</Link></li>
-            <li><Link to="/admin/page/edit">Editar</Link></li>
+            {/*<li><Link to="/admin/page/create">Crear</Link></li>*/}
+            <li><Link to="/admin/page/edit">Editar una Página</Link></li>
+            <li><Link to="/admin/decorations">Editar Decoraciones</Link></li>
           </ul>
         </section>
         

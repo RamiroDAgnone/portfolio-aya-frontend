@@ -6,6 +6,9 @@ import Footer from "../components/Footer";
 
 import Home from "../pages/home/Home";
 import PageBySlug from "./PageBySlug";
+import CreateDecoration from "../components/decorations/CreateDecoration";
+import EditDecoration from "../components/decorations/EditDecoration";
+import AdminDecorationList from "../components/decorations/AdminDecorationList";
 
 import WorkDetail from "../pages/works/WorkDetail";
 import AdminWorkList from "../pages/works/AdminWorkList";
@@ -70,8 +73,12 @@ function AppRouter() {
                   <Route path="admin/work/edit/:id" element={<EditWork />} />
                   <Route path="admin/work/reorder" element={<WorksReorderPage />} />
 
+                  <Route path="admin/decoration/create" element={<CreateDecoration />} />
+                  <Route path="admin/decoration/edit/:id" element={<EditDecoration />} />
+
                   <Route path="admin/team/create" element={<CreateTeam />} />
                   <Route path="admin/team/edit/:id" element={<EditTeam />} />
+                  <Route path="admin/decorations" element={<AdminDecorationList />} />
 
                   <Route path="admin/b/create" element={<CreateB />} />
                   <Route path="admin/b/edit" element={<EditB />} />

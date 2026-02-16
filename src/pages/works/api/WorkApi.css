@@ -206,6 +206,16 @@
   cursor: pointer;
 }
 
+.variation-row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+.variation-row .image-row{
+  width: 33%;
+}
+
 /* ---------- BUTTONS ---------- */
 button {
   color: white;

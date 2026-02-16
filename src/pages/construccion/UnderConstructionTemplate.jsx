@@ -54,7 +54,11 @@ export default function UnderConstructionTemplate({ page }) {
   }, [starImages]);
 
   return (
-    <div className="home" style={{ backgroundColor: page.backgroundColor }}>
+    <div className="home" style= {{ 
+        "--bg-color": page.backgroundColor, 
+        "--line-color": page.linesColor?.length === 7 ? page.linesColor + "B3" : page.linesColor
+      }}
+    >
 
       <div className="stars">
         {stars.map(star => (

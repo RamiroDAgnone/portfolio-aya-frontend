@@ -58,7 +58,10 @@ export default function EditPage() {
     setSelectedId(page._id);
 
     const { _id, createdAt, updatedAt, __v, ...clean } = page;
-    setFormData(clean);
+    setFormData({
+      ...clean,
+      decorations: page.decorations || []
+    });
 
     setAllVideos(page.videos || []);
 
@@ -112,7 +115,8 @@ export default function EditPage() {
         ...formData,
         ...uploads,
         graphics: uploads.graphics ?? formData.graphics,
-        videos: cleanVideos
+        videos: cleanVideos,
+        decorations: formData.decorations
       };
 
       await authFetch(`/pages/admin/${selectedId}`, {

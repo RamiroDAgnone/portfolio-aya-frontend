@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { API_URL } from "../../auth/constants";
 import { getResponsiveImageProps } from "../../utils/imageVariants";
+import { getScrapDecoration } from "../../utils/getScrapDecoration";
 
 import Lightbox from "../../components/lightbox/Lightbox";
 import UnaDupla from "./UnaDupla";
@@ -12,6 +13,11 @@ let teamCache = null;
 
 export default function LaDupla({ page }) {
   const [dupla, setDupla] = useState([]);
+  const [decorationsData, setDecorationsData] = useState([]);
+  
+  //const pin = getScrapDecoration(decorationsData, page.decorations, "pin");
+  const tape = getScrapDecoration(decorationsData, page.decorations, "tape");
+
   const [lightboxData, setLightboxData] = useState(null);
 
   useEffect(() => {
@@ -29,6 +35,13 @@ export default function LaDupla({ page }) {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    fetch(`${API_URL}/decorations`)
+      .then(res => res.json())
+      .then(setDecorationsData)
+      .catch(console.error);
+  }, []);
+
   return (
     <div className="about-container" 
       style= {{ 
@@ -38,7 +51,9 @@ export default function LaDupla({ page }) {
     >
       <div className="dupla-container">
         <div className="dupla-layout">
-          <div className="dupla-desc scrap-base scrap-tape-corners">
+          <div className={`dupla-desc scrap-base ${tape?.className || ""}`}
+            style={tape?.style}
+          >
             <h1>{page.title}</h1>
             {page.description?.split("\n").map((line, i) => (
                 <p key={i}>{line}</p>
@@ -82,12 +97,13 @@ export default function LaDupla({ page }) {
           .map((d, index) => (
             <UnaDupla
               key={d.id}
-              index={index}
               name={d.name}
               role={d.role}
               description={d.description}
               image={d.image}
               layout={d.layout}
+              decorations={d.decorations}
+              decorationsData={decorationsData}
               linkedin={d.socials?.linkedin}
               instagram={d.socials?.instagram}
               cv={d.socials?.cv}

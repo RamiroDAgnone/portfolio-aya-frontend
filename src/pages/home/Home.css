@@ -1,7 +1,6 @@
 .home {
   display: flex;
   position: relative;
-  background-color: #73352F;
   height: 100%;
   justify-content: center;
   align-items: center;
@@ -10,6 +9,12 @@
   color: #F9ECC9;
   min-height: 100vh;
   overflow: hidden;
+
+  background-color: var(--bg-color);
+  background-image:
+      linear-gradient(var(--line-color) .1em, transparent 1px),
+      linear-gradient(90deg, var(--line-color) .1em, transparent 1px);
+  background-size: 3em 3em;
 }
 
 .home-img {

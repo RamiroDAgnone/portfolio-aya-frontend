@@ -3,19 +3,19 @@ import { FaLinkedinIn, FaInstagram } from "react-icons/fa";
 import { IoMdBookmarks, IoIosMail, IoIosMailOpen } from "react-icons/io";
 import { useState } from "react";
 
-import { getScrapPinVariant, getScrapTapeVariant } from "../../utils/getScrapVariant";
+import { getScrapDecoration } from "../../utils/getScrapDecoration";
 
 import "./LaDupla.css";
 
-export default function UnaDupla({ index, name, role, description, image, layout, linkedin, instagram, cv, email }) {
+export default function UnaDupla({ name, role, description, image, layout, decorations = [], decorationsData = [], linkedin, instagram, cv, email }) {
     const [copied, setCopied] = useState(false);
-    const pinClass = getScrapPinVariant(index);
-    const tapeClass = getScrapTapeVariant(index);
-
+    const pin = getScrapDecoration(decorationsData, decorations, "pin");
+    const tape = getScrapDecoration(decorationsData, decorations, "tape");
+    
     return (
-        <section className={`about-section ${layout} scrap-base scrap-pin-top ${pinClass} `}>
+        <section className={`about-section ${layout} scrap-base ${pin?.className || ""} `}  style={pin?.style}>
             <div className={`about-section-header ${layout}`}>
-                <div className={`scrap-base scrap-tape-top ${layout} ${tapeClass}`}>
+                <div className={`scrap-base ${layout} ${tape?.className || ""}`}  style={tape?.style}>
                     
                     {image && image.sizes && (
                         <img 

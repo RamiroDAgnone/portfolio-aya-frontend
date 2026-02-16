@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import MediaSection from "../../../components/forms/MediaSection";
+import DecorationField from "../../../components/forms/DecorationField";
 import { useImageValidation } from "../../../utils/useImageValidation";
 
 import "../../works/api/WorkApi.css";
@@ -24,7 +25,8 @@ export default function TeamForm({
       instagram: "",
       cv: "",
       email: ""
-    }
+    },
+    decorations: [],
   });
 
   const { registerValidation, hasInvalidImages } = useImageValidation();
@@ -45,7 +47,8 @@ export default function TeamForm({
         instagram: initialData.socials?.instagram || "",
         cv: initialData.socials?.cv || "",
         email: initialData.socials?.email || ""
-      }
+      },
+      decorations: initialData.decorations || [],
     });
   }, [initialData]);
 
@@ -135,6 +138,16 @@ export default function TeamForm({
           onChange={handleChange}
         />
         
+        <DecorationField
+          value={formData.decorations}
+          onChange={decorations =>
+            setFormData(prev => ({
+              ...prev,
+              decorations
+            }))
+          }
+        />
+
         <MediaSection
           singleImages={[
             {

@@ -1,8 +1,9 @@
 import MediaSection from "../../../components/forms/MediaSection";
 import { useImageValidation } from "../../../utils/useImageValidation";
 import ColorField from "../../../components/forms/ColorField";
+//import DecorationField from "../../../components/forms/DecorationField";
 
-import { PAGE_RULES } from "../../../utils/previews/pageRules";
+import { PAGE_RULES } from "../../../utils/pageRules";
 import "../../works/api/WorkApi.css";
 
 export default function PageForm({
@@ -86,6 +87,19 @@ export default function PageForm({
         onChange={onChange}
         defaultColor="#000000"
       />
+      {/*
+      <DecorationField
+        value={formData.decorations || []}
+        onChange={decorations =>
+          onChange({
+            target: {
+              name: "decorations",
+              value: decorations
+            }
+          })
+        }
+      />
+      */}
 
       <MediaSection
         singleImages={

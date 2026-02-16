@@ -10,7 +10,8 @@ import "../../components/css/Scrapbook.css"
 let bProjectsCache = null;
 
 export default function LadoB({ page }) {
-  const [projects, setProjects] = useState([]);  
+  const [projects, setProjects] = useState([]);
+  const [decorationsData, setDecorationsData] = useState([]);
 
   useEffect(() => {
     if (bProjectsCache) {
@@ -27,6 +28,13 @@ export default function LadoB({ page }) {
       .catch(err =>
         console.error("Error cargando Lado B:", err)
       );
+  }, []);
+
+  useEffect(() => {
+    fetch(`${API_URL}/decorations`)
+      .then(res => res.json())
+      .then(setDecorationsData)
+      .catch(console.error);
   }, []);
 
   return (
@@ -77,7 +85,8 @@ export default function LadoB({ page }) {
             graphics={project.graphics || []}
             author={project.author}
             reverse={index % 2 !== 0}
-            pinVariant={index % 6}
+            decorations={project.decorations}
+            decorationsData={decorationsData}
           />
         ))}
       </div>

@@ -18,7 +18,8 @@ export default function CreatePage() {
     slug: "",
     description: "",
     backgroundColor: "#ffffff",
-    status: "draft"
+    status: "draft",
+    decorations: []
   });
 
   const {
@@ -71,7 +72,8 @@ export default function CreatePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
-          videos: cleanVideos
+          videos: cleanVideos,
+          decorations: formData.decorations
         })
       });
 
@@ -88,7 +90,8 @@ export default function CreatePage() {
         body: JSON.stringify({
           ...formData,
           ...uploads,
-          videos: cleanVideos
+          videos: cleanVideos,
+          decorations: formData.decorations
         })
       });
 
