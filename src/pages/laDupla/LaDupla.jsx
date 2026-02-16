@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import { API_URL } from "../../auth/constants";
 import { getResponsiveImageProps } from "../../utils/imageVariants";
 import { getScrapDecoration } from "../../utils/getScrapDecoration";
 import { getDecorations } from "../../services/decorationsService";
+import { getTeam } from "../../services/teamService";
 
 import Lightbox from "../../components/lightbox/Lightbox";
 import UnaDupla from "./UnaDupla";
 
 import "./LaDupla.css";
 import "../../components/css/Scrapbook.css"
-
-let teamCache = null;
 
 export default function LaDupla({ page }) {
   const [dupla, setDupla] = useState([]);
@@ -22,17 +20,8 @@ export default function LaDupla({ page }) {
   const [lightboxData, setLightboxData] = useState(null);
 
   useEffect(() => {
-    if (teamCache) {
-      setDupla(teamCache);
-      return;
-    }
-
-    fetch(`${API_URL}/team`)
-      .then(res => res.json())
-      .then(data => {
-        teamCache = data;
-        setDupla(data);
-      })
+    getTeam()
+      .then(setDupla)
       .catch(console.error);
   }, []);
 

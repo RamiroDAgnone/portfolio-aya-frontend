@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
-import { API_URL } from "../../auth/constants";
 import { getResponsiveImageProps } from "../../utils/imageVariants";
 import { getDecorations } from "../../services/decorationsService";
+import { getBProjects } from "../../services/bProjectsService";
 
 import ProyectoB from "./ProyectoB.jsx";
 
 import "./LadoB.css";
 import "../../components/css/Scrapbook.css"
-
-let bProjectsCache = null;
 
 export default function LadoB({ page }) {
   const [projects, setProjects] = useState([]);
@@ -17,14 +15,8 @@ export default function LadoB({ page }) {
   useEffect(() => {
     const loadData = async () => {
       try {
-        if (bProjectsCache) {
-          setProjects(bProjectsCache);
-        } else {
-          const res = await fetch(`${API_URL}/bprojects`);
-          const data = await res.json();
-          bProjectsCache = data;
-          setProjects(data);
-        }
+        const projects = await getBProjects();
+        setProjects(projects);
 
         const decorations = await getDecorations();
         setDecorationsData(decorations);

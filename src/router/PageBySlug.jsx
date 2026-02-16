@@ -1,13 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { API_URL } from "../auth/constants";
 import { UseAuth } from "../auth/AuthProvider";
-import { authFetch } from "../auth/authFetch";
+import { getPageBySlug } from "../services/pagesService";
+import { preloadSecondaryData } from "../services/preloadService";
 
 import DefaultPage from "../pages/home/Home";
 import "./Slug.css";
-
-const pageCache = {};
 
 export default function PageBySlug({ forcedSlug, render }) {
   const params = useParams();
@@ -21,39 +19,22 @@ export default function PageBySlug({ forcedSlug, render }) {
     let mounted = true;
     setLoading(true);
 
-    if (pageCache[slug]) {
-      setPage(pageCache[slug]);
-      setLoading(false);
-      return;
-    }
+    getPageBySlug(slug, isAuthenticated)
+      .then(data => {
+        if (mounted) {
+          setPage(data);
 
-    const fetchPage = async () => {
-      try {
-        let data;
-        if (isAuthenticated) {
-          data = await authFetch(`/pages/slug/${slug}`);
-        } else {
-          const res = await fetch(`${API_URL}/pages/slug/${slug}`);
-          if (res.status === 404) throw new Error("Not Found");
-          if (!res.ok) {
-            const body = await res.json().catch(() => null);
-            throw new Error(body?.error || `HTTP ${res.status}`);
-          }
-          data = await res.json();
+          // Ejecuta una sola vez internamente
+          preloadSecondaryData(isAuthenticated);
         }
-
-        if (!mounted) return;
-        pageCache[slug] = data;
-        setPage(data);
-      } catch (err) {
+      })
+      .catch(err => {
         console.warn(`[PageBySlug] error fetching slug=${slug}:`, err.message);
         if (mounted) setPage(null);
-      } finally {
+      })
+      .finally(() => {
         if (mounted) setLoading(false);
-      }
-    };
-
-    fetchPage();
+      });
 
     return () => {
       mounted = false;

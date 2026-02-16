@@ -1,15 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { API_URL } from "../../auth/constants";
 import { getResponsiveImageProps } from "../../utils/imageVariants";
 import { UseAuth } from "../../auth/AuthProvider";
-import { authFetch } from "../../auth/authFetch";
+import { getWorkBySlug } from "../../services/worksService";
 
 import Lightbox from "../../components/lightbox/Lightbox";
 
 import "./WorkDetail.css";
-
-const workDetailCache = new Map();
 
 export default function WorkDetail() {
   const { slug } = useParams();
@@ -21,36 +18,23 @@ export default function WorkDetail() {
 
   const [lightboxData, setLightboxData] = useState(null);
 
-
   useEffect(() => {
-    const cacheKey = `${slug}:${isAuthenticated ? "auth" : "public"}`;
+    setLoading(true);
+    setError(null);
 
-    if (workDetailCache.has(cacheKey)) {
-      setTrabajo(workDetailCache.get(cacheKey));
-      setLoading(false);
-      return;
-    }
-
-    const request = isAuthenticated
-      ? authFetch(`/works/slug/${slug}`)
-      : fetch(`${API_URL}/works/slug/${slug}`).then(res => {
-          if (!res.ok) throw new Error("Trabajo no encontrado");
-          return res.json();
-        });
-
-    request
+    getWorkBySlug(slug, isAuthenticated)
       .then(data => {
-        workDetailCache.set(cacheKey, data);
         setTrabajo(data);
-        setLoading(false);
       })
       .catch(err => {
         setError(err.message);
+        setTrabajo(null);
+      })
+      .finally(() => {
         setLoading(false);
       });
 
   }, [slug, isAuthenticated]);
-
 
   if (loading) {
     return <div className="work-detail"><p>Cargando...</p></div>;

@@ -15,6 +15,7 @@ export default function ProyectoB({
 }) {
   const [lightboxData, setLightboxData] = useState(null);
   const [mobileOverlay, setMobileOverlay] = useState(false);
+  const [preloaded, setPreloaded] = useState(false);
 
   const AUTHOR_LABELS = {
     autor1: "Ana Montesino",
@@ -25,6 +26,27 @@ export default function ProyectoB({
   const tape = getScrapDecoration(decorationsData, decorations, "tape");
 
   const mainImage = graphics[0];
+
+  const preloadImages = () => {
+    if (preloaded) return;
+    setPreloaded(true);
+
+    graphics.forEach(img => {
+      if (!img?.sizes) return;
+
+      const sizes = Object.keys(img.sizes)
+        .map(Number)
+        .sort((a, b) => b - a);
+
+      const largestKey = sizes[0];
+      const largest = img.sizes[largestKey];
+
+      if (largest?.path) {
+        const image = new Image();
+        image.src = largest.path;
+      }
+    });
+  };
 
   return (
     <>
@@ -64,6 +86,10 @@ export default function ProyectoB({
                         className={`proyectoB-overlay ${
                           mobileOverlay ? "active-mobile" : ""
                         }`}
+                        role="button"
+                        tabIndex={0}
+                        onMouseEnter={preloadImages}
+                        onFocus={preloadImages}
                         onClick={() => {
                           if (window.innerWidth < 768) {
                             setMobileOverlay(!mobileOverlay);
@@ -74,10 +100,20 @@ export default function ProyectoB({
                             });
                           }
                         }}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setLightboxData({
+                              images: graphics,
+                              index: 0
+                            });
+                          }
+                        }}
                       >
                         <h4>{title}</h4>
                         <span>Ver galería</span>
                       </div>
+
                     </div>
                   </div>
                 );

@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import { getResponsiveImageProps } from "../../utils/imageVariants";
 
-import "./Works.css";
-
-export default function Card({ slug, title, cover }) {
+export default function Card({ slug, title, cover, onPrefetch }) {
   const hasImage = Boolean(cover && cover.sizes);
 
   return (
-    <Link to={`/trabajos/${slug}`} className="card">
+    <Link to={`/trabajos/${slug}`} className="card" 
+      onMouseEnter={onPrefetch}
+      onFocus={onPrefetch}
+    >
       <div className="card-image">
         {hasImage ? (
           <img
