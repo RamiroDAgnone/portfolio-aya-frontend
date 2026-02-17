@@ -56,10 +56,10 @@ function AppRouter() {
 
               <Route element={<MainLayout />}>
 
-                <Route index element={ <PageBySlug forcedSlug="home" render={page => <Home page={page} />} /> } />
+                <Route index element={ <PageBySlug key="home" forcedSlug="home" render={page => <Home page={page} />} /> } />
 
-                <Route path="la-dupla" element={ <PageBySlug forcedSlug="la-dupla" render={page => <LaDupla page={page} />} /> } />
-                <Route path="lado-b" element={ <PageBySlug forcedSlug="lado-b" render={page => <LadoB page={page} />} /> } />
+                <Route path="la-dupla" element={ <PageBySlug key="la-dupla" forcedSlug="la-dupla" render={page => <LaDupla page={page} />} /> } />
+                <Route path="lado-b" element={ <PageBySlug key="lado-b" forcedSlug="lado-b" render={page => <LadoB page={page} />} /> } />
 
                 <Route path="trabajos/:slug" element={<WorkDetail />} />
                 <Route path="admin/login" element={<Login />} />

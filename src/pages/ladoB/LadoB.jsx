@@ -55,7 +55,7 @@ export default function LadoB({ page }) {
                 }}
                 loading="eager"
                 decoding="async"
-                alt={page.title}
+                alt=""
               />
             </div>
           );

@@ -66,7 +66,7 @@ export default function LaDupla({ page }) {
                   }}
                   loading="lazy"
                   decoding="async"
-                  alt={page.title}
+                  alt=""
                   onClick={() =>
                     setLightboxData({
                       images: page.graphics,

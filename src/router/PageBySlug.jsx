@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { UseAuth } from "../auth/AuthProvider";
-import { getPageBySlug } from "../services/pagesService";
+import { getAllPages } from "../services/pagesService";
 import { preloadSecondaryData } from "../services/preloadService";
 
 import DefaultPage from "../pages/home/Home";
@@ -17,19 +17,21 @@ export default function PageBySlug({ forcedSlug, render }) {
 
   useEffect(() => {
     let mounted = true;
+
     setLoading(true);
+    setPage(null);
 
-    getPageBySlug(slug, isAuthenticated)
-      .then(data => {
-        if (mounted) {
-          setPage(data);
+    getAllPages(isAuthenticated)
+      .then(pages => {
+        if (!mounted) return;
 
-          // Ejecuta una sola vez internamente
-          preloadSecondaryData(isAuthenticated);
-        }
+        const found = pages.find(p => p.slug === slug) || null;
+        setPage(found);
+
+        preloadSecondaryData(isAuthenticated);
       })
       .catch(err => {
-        console.warn(`[PageBySlug] error fetching slug=${slug}:`, err.message);
+        console.warn(`[PageBySlug] error:`, err.message);
         if (mounted) setPage(null);
       })
       .finally(() => {
@@ -46,7 +48,9 @@ export default function PageBySlug({ forcedSlug, render }) {
       {loading && <PageSkeleton />}
 
       {!loading && page && (
-        render ? render(page) : <DefaultPage page={page} />
+        <div key={slug}>
+          {render ? render(page) : <DefaultPage page={page} />}
+        </div>
       )}
     </main>
   );
