@@ -4,6 +4,7 @@ import { getScrapDecoration } from "../../utils/getScrapDecoration";
 import { getDecorations } from "../../services/decorationsService";
 import { getTeam } from "../../services/teamService";
 
+import StarBackground from "../../components/decorations/StarBackground";
 import Lightbox from "../../components/lightbox/Lightbox";
 import UnaDupla from "./UnaDupla";
 
@@ -38,6 +39,7 @@ export default function LaDupla({ page }) {
         "--line-color": page.linesColor?.length === 7 ? page.linesColor + "B3" : page.linesColor
       }} 
     >
+      <StarBackground />
       <div className="dupla-container">
         <div className="dupla-layout">
           <div className={`dupla-desc scrap-base ${tape?.className || ""}`}
@@ -83,7 +85,7 @@ export default function LaDupla({ page }) {
 
       <div className="us-container">
         {dupla
-          .map((d, index) => (
+          .map(d => (
             <UnaDupla
               key={d.id}
               name={d.name}

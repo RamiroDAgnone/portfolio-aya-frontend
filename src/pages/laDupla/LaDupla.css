@@ -1,6 +1,7 @@
 /* ---------- Base Containers ---------- */
 
 .about-container {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,21 +57,24 @@
     height: auto;
     object-fit: contain;
     display: block;
+    
 }
 
 /* ---------- Description ---------- */
 
 .dupla-desc {
-    grid-column: 2;
-    grid-row: 2;
-    text-align: center;
     display: flex;
     flex-direction: column;
+
     color: black;
+    text-align: center;
+
     z-index: 2;
-    background-color: white;
     padding: 20px;
     margin-left: 2rem;
+
+    background-color: #fff9ef;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
 }
 
 .dupla-desc h1 {

@@ -48,45 +48,6 @@
   z-index: 1;
 }
 
-/* ---------- STARS ---------- */
-
-.stars {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.star {
-  position: absolute;
-
-  opacity: 0;
-
-  animation-name: pulse;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-}
-
-@keyframes pulse {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  20% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  80% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-}
-
 /* ---------- WORKS ---------- */
 .works-wrapper {
   width: 95%;

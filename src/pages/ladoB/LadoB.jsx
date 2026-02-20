@@ -3,6 +3,7 @@ import { getResponsiveImageProps } from "../../utils/imageVariants";
 import { getDecorations } from "../../services/decorationsService";
 import { getBProjects } from "../../services/bProjectsService";
 
+import StarBackground from "../../components/decorations/StarBackground";
 import ProyectoB from "./ProyectoB.jsx";
 
 import "./LadoB.css";
@@ -36,6 +37,7 @@ export default function LadoB({ page }) {
         "--line-color": page.linesColor?.length === 7 ? page.linesColor + "B3" : page.linesColor
       }}
     >
+      <StarBackground />
       <header className="ladoB-header">
         {page.image && page.image.sizes && (() => {
           const baseSize =

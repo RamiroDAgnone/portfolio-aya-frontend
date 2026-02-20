@@ -77,7 +77,9 @@ export default function WorkDetail() {
   return (
     <div
       className="work-detail"
-      style={{ backgroundColor: trabajo.backgroundColor }}
+      style={{ 
+        "--bg-color": trabajo.backgroundColor
+      }}
     >
       {trabajo.status === "draft" && (
         <span className="draft-badge">BORRADOR</span>

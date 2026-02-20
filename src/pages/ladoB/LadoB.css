@@ -1,5 +1,6 @@
 /* ---------- GENERAL ---------- */
 .ladoB {
+  position: relative;
   width: 100%;
   min-height: 100vh;
   padding-bottom: 40px;
@@ -24,6 +25,7 @@
   width: 100%;
   margin-top: 12px;
   user-select: none;
+  z-index: 999;
 }
 
 .ladoB-logo img{

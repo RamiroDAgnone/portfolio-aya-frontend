@@ -46,6 +46,7 @@ export default function Works() {
             slug={work.slug}
             title={work.title}
             cover={work.cover}
+            backgroundColor={work.backgroundColor}
             onPrefetch={() => handlePrefetch(work.slug)}
           />
         ))}
