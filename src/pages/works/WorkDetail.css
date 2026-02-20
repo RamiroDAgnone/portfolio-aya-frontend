@@ -83,7 +83,7 @@
 
 .work-extra-images img {
   width: auto;
-  max-height: 260px;
+  max-height: 245px;
   object-fit: contain;
   display: block;
   cursor: pointer;

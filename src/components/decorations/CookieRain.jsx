@@ -10,7 +10,7 @@ const CookieRain = ({ trigger }) => {
             const newBatch = Array.from({ length }).map(() => ({
                 id: Math.random(),
                 left: Math.random() * 95,
-                size: 25 + Math.random() * 25,
+                size: 35 + Math.random() * 50,
                 delay: Math.random() * 0.8,
                 duration: 2.5 + Math.random() * 1.5
             }));
