@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { authFetch } from "../../../auth/authFetch";
 import { useImageFiles } from "../../../utils/useImageFiles";
 import { uploadImages } from "../../../utils/uploadImages.js";
@@ -9,12 +9,12 @@ import { UPLOAD_CONCURRENCY } from "../../../config/uploads.js";
 import BProjectForm from "./BProjectForm";
 
 export default function EditBProject() {
-  const [projects, setProjects] = useState([]);
-  const [selectedId, setSelectedId] = useState("");
+  const { id: selectedId } = useParams();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState(null);
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
+  const [initialized, setInitialized] = useState(false);
 
   const {
     files,
@@ -43,47 +43,41 @@ export default function EditBProject() {
   } = useVideos();
 
   useEffect(() => {
-    authFetch("/bprojects/admin")
-      .then(setProjects);
-  }, []);
+    if (!selectedId || initialized) return;
 
-  const handleSelect = (e) => {
-    const project = projects.find(p => p._id === e.target.value);
-    setSelectedId(e.target.value);
+    authFetch(`/bprojects/admin/${selectedId}`).then(project => {
+      if (!project) return;
 
-    if (!project) {
-      setFormData(null);
-      setAllVideos([]);
-      setFiles(prev => ({ ...prev, graphics: [] }));
-      return;
-    }
+      const { _id, createdAt, updatedAt, __v, ...clean } = project;
 
-    setFormData({
-      title: project.title,
-      description: project.description,
-      author: project.author,
-      visibility: project.visibility ?? true,
-      decorations: project.decorations || []
+      setFormData({
+        title: clean.title,
+        description: clean.description,
+        author: clean.author,
+        visibility: clean.visibility ?? true,
+        decorations: clean.decorations || []
+      });
+
+      setAllVideos(
+        (project.videos || []).map(v =>
+          typeof v === "string" ? { url: v } : v
+        )
+      );
+
+      setFiles({
+        graphics: (project.graphics || []).map((img, index) => ({
+          id: crypto.randomUUID?.() ?? `img-${index}-${Date.now()}`,
+          current: img,
+          file: null,
+          remove: false,
+          description: img?.description || "",
+          order: img?.order ?? index * 10
+        }))
+      });
+
+      setInitialized(true);
     });
-
-    setAllVideos(
-      (project.videos || []).map(v =>
-        typeof v === "string" ? { url: v } : v
-      )
-    );
-
-    setFiles(prev => ({
-      ...prev,
-      graphics: (project.graphics || []).map((img, index) => ({
-        id: crypto.randomUUID(),
-        current: img,
-        file: null,
-        remove: false,
-        description: img.description || "",
-        order: img.order ?? index * 10
-      }))
-    }));
-  };
+  }, [selectedId, initialized, setFiles, setAllVideos]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -125,40 +119,31 @@ export default function EditBProject() {
     }
   };
 
+  if (!formData) return null;
+
   return (
     <div className="api-conteiner">
       <div className="work-api-container">
-        <h2>Seleccionar el proyecto a editar</h2>
+        <BProjectForm
+          title="Editar un Proyecto B"
+          formData={formData}
+          files={files}
+          videos={videos}
+          fileErrors={fileErrors}
+          hasInvalidFiles={hasInvalidFiles}
+          onChange={handleChange}
 
-        <select className="work-select" value={selectedId} onChange={handleSelect}>
-          <option value="">Seleccionar el proyecto</option>
-          {projects.map(p => (
-            <option key={p._id} value={p._id}>{p.title}</option>
-          ))}
-        </select>
+          graphics={imageArrays.graphics}
 
-        {selectedId && formData && (
-          <BProjectForm
-            title="Editar un Proyecto B"
-            formData={formData}
-            files={files}
-            videos={videos}
-            fileErrors={fileErrors}
-            hasInvalidFiles={hasInvalidFiles}
-            onChange={handleChange}
+          onVideoAdd={addVideo}
+          onVideoChange={changeVideo}
+          onVideoRemove={removeVideo}
+          reorderVideos={reorderVideos}
 
-            graphics={imageArrays.graphics}
-
-            onVideoAdd={addVideo}
-            onVideoChange={changeVideo}
-            onVideoRemove={removeVideo}
-            reorderVideos={reorderVideos}
-
-            onSubmit={handleSubmit}
-            submitText="Actualizar"
-            loading={loading}
-          />
-        )}
+          onSubmit={handleSubmit}
+          submitText="Actualizar"
+          loading={loading}
+        />
       </div>
     </div>
   );

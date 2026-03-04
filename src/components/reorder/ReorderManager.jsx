@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { authFetch } from "../../auth/authFetch";
+import { Link } from "react-router-dom";
 
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
@@ -90,7 +91,12 @@ export default function ReorderManager({ apiBase, renderItem }) {
 
   return (
     <div className="reorder-manager">
-      <h1>Reordenar</h1>
+      <header className="dashboard-header">
+        <h2>Reordenar</h2>
+        <Link to="/admin/dashboard" className="admin-btn back">
+          Volver al Dashboard
+        </Link>
+      </header>
 
       {message && (
         <div className={`reorder-msg ${message.type}`}>

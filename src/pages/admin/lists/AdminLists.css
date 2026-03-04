@@ -1,0 +1,114 @@
+
+.admin-works-page {
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.admin-works-header {
+    max-width: 1400px;
+    margin: 0 auto 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.admin-works-header h2 {
+    font-size: 2rem;
+    font-family: "Faculty Glyphic";
+}
+
+.admin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    text-align: center;
+}
+
+.admin-actions a {
+    width: 150px;
+}
+.admin-btn.select-filter{
+    width: 180px;
+}
+
+.admin-btn {
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    background: blueviolet;
+    color: #fff;
+
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.admin-btn:hover {
+    background: darkviolet;
+}
+
+.admin-btn.primary {
+    background: #0070f3;
+}
+
+.admin-btn.primary:hover {
+    background: #0059c1;
+}
+
+.admin-btn.secondary {
+    background-color: #38e298;
+}
+
+.admin-btn.secondary:hover {
+    background: #38e253;
+}
+
+.admin-btn.back{
+    background: #A1A1A1;
+}
+
+.admin-btn.back:hover{
+    background: #787878;
+}
+
+.admin-btn.small {
+    padding: 0.4rem 0.7rem;
+    font-size: 1.5rem;
+    min-width: 6rem;
+}
+
+.admin-card .card-overlay {
+    gap: 0.75rem;
+}
+.card-overlay .detail{
+    font-size: 1.1rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.admin-card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.status {
+    user-select: none;
+    font-size: 0.75rem;
+}
+
+.status.published {
+    background: #1e8e3e;
+}
+
+.status.draft {
+    background: #b45309;
+}
+
+.status.archived {
+    background: #6b7280;
+}

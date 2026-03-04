@@ -48,6 +48,7 @@
     padding: 20px;
     box-sizing: border-box;
     overflow: visible;
+    justify-self: center;
 }
 
 .dupla-photo {
@@ -112,11 +113,7 @@
     100% { transform: rotate(0deg); }
 }
 
-.dupla-1:hover img,
-.dupla-2:hover img,
-.dupla-3:hover img,
-.dupla-4:hover img,
-.dupla-5:hover img {
+.dupla-photo:hover{
     animation: rotateWiggle 0.65s ease-in-out;
 }
 

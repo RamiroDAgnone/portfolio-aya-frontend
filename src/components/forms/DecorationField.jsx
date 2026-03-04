@@ -99,7 +99,7 @@ export default function DecorationField({ value = [], onChange }) {
 
     return (
       <div>
-        <h4>{label}</h4>
+        <h4 className="decoration-name">{label}</h4>
 
         <div className="decoration-preview-name">
           <label>
@@ -156,9 +156,10 @@ export default function DecorationField({ value = [], onChange }) {
   return (
     <div className="decoration-field">
       <h3>Decoraciones</h3>
-
-      <DecorationBlock type="pin" label="📌 Pin" />
-      <DecorationBlock type="tape" label="🩹 Cinta" />
+      <div className="decoration-field-container">
+        <DecorationBlock type="pin" label="📌 Pin" />
+        <DecorationBlock type="tape" label="🩹 Cinta" />
+      </div>
     </div>
   );
 }

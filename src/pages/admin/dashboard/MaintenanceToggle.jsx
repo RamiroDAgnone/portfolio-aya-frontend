@@ -5,10 +5,8 @@ export default function MaintenanceToggle({
 }) {
   return (
     <label
+      className="maintenance-toggle"
       style={{
-        display: "flex",
-        gap: 12,
-        alignItems: "center",
         opacity: disabled ? 0.6 : 1,
         cursor: disabled ? "not-allowed" : "pointer"
       }}

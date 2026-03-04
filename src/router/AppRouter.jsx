@@ -13,13 +13,14 @@ import EditDecoration from "../components/decorations/EditDecoration";
 import AdminDecorationList from "../components/decorations/AdminDecorationList";
 
 import WorkDetail from "../pages/works/WorkDetail";
-import AdminWorkList from "../pages/works/AdminWorkList";
 import LaDupla from "../pages/laDupla/LaDupla";
 import LadoB from "../pages/ladoB/LadoB";
 
 import Signup from "../pages/admin/Signup";
 import Login from "../pages/admin/Login";
-import Dashboard from "../pages/admin/Dashboard";
+import Dashboard from "../pages/admin/dashboard/Dashboard";
+import AdminWorkList from "../pages/admin/lists/AdminWorkList";
+import AdminBProjectList from "../pages/admin/lists/AdminBProjectList";
 
 import CreateWork from "../pages/works/api/CreateWork";
 import EditWork from "../pages/works/api/EditWork";
@@ -69,8 +70,10 @@ function AppRouter() {
                 <Route element={<Protected />}>
                   <Route path="admin/signup" element={<Signup />} />
                   <Route path="admin/dashboard" element={<Dashboard />} />
+                  
+                  <Route path="/admin/works" element={<AdminWorkList />} />
+                  <Route path="/admin/b" element={<AdminBProjectList />} />
 
-                  <Route path="admin/works" element={<AdminWorkList />} />
                   <Route path="admin/work/create" element={<CreateWork />} />
                   <Route path="admin/work/edit/:id" element={<EditWork />} />
                   <Route path="admin/work/reorder" element={<WorksReorderPage />} />
@@ -83,7 +86,7 @@ function AppRouter() {
                   <Route path="admin/decorations" element={<AdminDecorationList />} />
 
                   <Route path="admin/b/create" element={<CreateB />} />
-                  <Route path="admin/b/edit" element={<EditB />} />
+                  <Route path="admin/b/edit/:id" element={<EditB />} />
                   <Route path="admin/b/reorder" element={<BProjectsReorderPage />} />
 
                   <Route path="admin/page/create" element={<CreatePage />} />
