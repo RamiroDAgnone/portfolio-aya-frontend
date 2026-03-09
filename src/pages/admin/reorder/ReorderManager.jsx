@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { authFetch } from "../../auth/authFetch";
+import { authFetch } from "../../../auth/authFetch";
 import { Link } from "react-router-dom";
 
 import { DndContext, closestCenter } from "@dnd-kit/core";

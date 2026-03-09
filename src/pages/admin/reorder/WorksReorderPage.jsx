@@ -1,5 +1,5 @@
-import ReorderManager from "../../components/reorder/ReorderManager";
-import Card from "../../pages/works/Card";
+import ReorderManager from "./ReorderManager";
+import Card from "../../works/Card";
 
 export default function WorksReorderPage() {
   return (

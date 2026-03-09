@@ -24,11 +24,11 @@ import AdminBProjectList from "../pages/admin/lists/AdminBProjectList";
 
 import CreateWork from "../pages/works/api/CreateWork";
 import EditWork from "../pages/works/api/EditWork";
-import WorksReorderPage from "../components/reorder/WorksReorderPage";
+import WorksReorderPage from "../pages/admin/reorder/WorksReorderPage";
 
 import CreateB from "../pages/ladoB/api/CreateBProject";
 import EditB from "../pages/ladoB/api/EditBProject";
-import BProjectsReorderPage from "../components/reorder/BProjectsReorderPage";
+import BProjectsReorderPage from "../pages/admin/reorder/BProjectsReorderPage";
 
 import CreateTeam from "../pages/laDupla/api/CreateTeam";
 import EditTeam from "../pages/laDupla/api/EditTeam";

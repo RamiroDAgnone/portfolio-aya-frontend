@@ -3,7 +3,10 @@ import { getResponsiveImageProps } from "../../utils/imageVariants";
 
 export default function Card({ slug, title, cover, backgroundColor, onPrefetch }) {
   const hasImage = Boolean(cover && cover.sizes);
-
+  
+  const baseSize =
+    hasImage ? (cover.sizes?.[600] || Object.values(cover.sizes)[0]) : null;
+    
   return (
     <Link to={`/trabajos/${slug}`} className="card" 
       onMouseEnter={onPrefetch}
@@ -20,6 +23,11 @@ export default function Card({ slug, title, cover, backgroundColor, onPrefetch }
               sizes:
                 "(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 400px"
             })}
+            width={baseSize.realWidth}
+            height={baseSize.realHeight}
+            style={{
+              aspectRatio: `${baseSize.realWidth} / ${baseSize.realHeight}`
+            }}
             loading="lazy"
             decoding="async"
             alt={title}

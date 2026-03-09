@@ -12,7 +12,10 @@ const Dashboard = () => {
   const auth = UseAuth();
   const user = auth.getUser();
   
-  const [stats, setStats] = useState(null);
+  const [stats, setStats] = useState({
+    works: { total: 0, published: 0, draft: 0 },
+    bProjects: { total: 0, published: 0, draft: 0 }
+  });
 
   useEffect(() => {
     authFetch("/dashboard/stats")

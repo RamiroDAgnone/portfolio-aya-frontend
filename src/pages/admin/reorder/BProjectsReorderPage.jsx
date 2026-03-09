@@ -1,5 +1,5 @@
-import ReorderManager from "../../components/reorder/ReorderManager";
-import { ASSETS_URL } from "../../auth/constants";
+import ReorderManager from "./ReorderManager";
+import { ASSETS_URL } from "../../../auth/constants";
 
 function BProjectAdminCard({ project }) {
   const main = (project.graphics || [])[0];
